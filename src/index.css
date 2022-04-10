@@ -1,4 +1,60 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+*,
+*::before,
+*::after {
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --prim-blue: #00ADB5;
+  /* --prim-dgray: #222831; */
+  --prim-lgrey: #393E46;
+  --prim-offwhite: #EEEEEE;
+
+  --prim-dgray: #1f2730;
+  --prim-exp-lblue: #b1d1e6;
+  --prim-exp-grey: #6e6f86;
+  --prim-exp-peach: #efc7ba;
+  /* Coolors */
+  --prim-yellow: #EDCD15;
+  --prim-black: #0F1A20;
+  --prim-off-white: #F2F4FF;
+  --prim-ghost-white: #F0EFF4;
+}
+
+#root {
+  min-height: 100vh;
+}
+
 body {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 400;
+  background-color: var(--prim-ghost-white);
+  /* background-color: #e2e1e0; */
+  min-width: 860px;
+  position: relative;
+  z-index: -10;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+button {
+  font-family: "Noto Sans", sans-serif;
+}
+
+hr {
+  border: 1px solid lightgray;
+}
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +66,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+@media only screen and (max-width: 768px) {
+  body {
+    position: relative;
+    min-width: initial;
+  }
 }

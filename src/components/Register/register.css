@@ -1,0 +1,165 @@
+.register-ctn {
+    height: calc(100vh - 75px);
+    /* margin-top: -49px; height and margin are uneven to cover the whole page with the background image */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background: url("/public/register-bg-img.jpg") no-repeat;
+    background-size: cover;
+}
+
+.register-form > button {
+    font-size: 0.97rem;
+}
+
+.register-font {
+    color: white;
+}
+
+.register-font > h1 {
+    font-size: 10rem;
+    font-family: "Exo";
+    width: fit-content;
+}
+
+.register-font > p {
+    font-size: 1.5rem;
+    width: fit-content;
+}
+
+.register-form {
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 325px;
+    height: 450px;
+    padding: 2.5em 2.5em 2.5em 2.5em;
+    /* box-shadow: 0px 8px 25px #e0e0e031, 
+    -10px 8px 25px #e0e0e031, 10px 8px 15px #e0e0e031; */
+
+    /* height: 300px; */
+    /* border: 1px solid red; */
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: height 0.25s;
+}
+
+.pre-profimg-ctn {
+    margin: 0.5em 0;
+    width: 40%;
+    height: 45%;
+    border-radius: 0.40em;
+    align-self: center;
+}
+
+.pre-profimg {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.40em;
+    object-fit: cover;
+}
+
+label {
+    width: 82.5%;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.925rem;
+}
+
+.reg-inp-ctn {
+    width: 82.5%;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.925rem;
+}
+
+.reg-inp-ctn {
+    margin-top: 0.5em;
+}
+
+.reg-inp-ctn > input {
+    background-color: transparent;
+    border-bottom: 1px solid white;
+    font-size: 0.925rem;
+    border-radius: 0 0 0.25em 0.25em;
+    padding: 0.25em 0.5em;
+    color: white;
+}
+
+.reg-inp-ctn > input:focus {
+    outline: none;
+}
+
+.register-ctn input {
+    margin-top: 0.5em;
+}
+
+.form-modify {
+    height: 500px !important;
+}
+
+.img-upload-ctn {
+    width: 100%;
+    height: 40%;
+    padding: 0 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-upload-ctn > span {
+    font-size: 0.75rem;
+    margin-bottom: 1em;
+}
+
+.img-upload-style-lbl {
+    font-size: 0.95rem;
+    /* height: 35px; */
+    padding: 0.5em 1em;
+    background-color: var(--prim-blue);
+    margin: 0 auto;
+    border-radius: 0.25em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.img-upload-style-lbl:hover {
+    background-color: #008086;
+}
+
+.img-upload-style-lbl > input {
+    display: none;
+}
+
+.img-upload-style-lbl > span {
+    color: black;
+}
+
+.register-ctn > .register-form > button {
+    margin: 0 auto;
+    margin-top: 1em;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    background-color: var(--prim-blue);
+    color: black;
+    transition: background-color 0.25s;
+}
+
+.register-ctn > .register-form > button:hover {
+    background-color: #008086;
+}
+
+@media only screen and (max-width: 768px) {
+    .register-ctn {
+        height: initial;
+        flex-direction: column;
+        padding: 1em 0 7em 0;
+    }
+}

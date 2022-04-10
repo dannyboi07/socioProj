@@ -1,0 +1,27 @@
+.fail-ctn {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fail-ctn > p {
+    color: gray;
+    font-size: 1rem;
+}
+
+.fail-ctn > button {
+    background-color: var(--prim-blue);
+    font-size: 0.825rem;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    color: white;
+}
+
+.fail-warning-img {
+    width: 10%;
+    margin-bottom: 0.25em;
+}

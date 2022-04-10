@@ -1,0 +1,120 @@
+.likes-ctn {
+    position: absolute;
+    min-width: 190px;
+    width: fit-content;
+    /* height: 200px; */
+    opacity: 0;
+    top: 150%;
+    left: -50%;
+    transform: scale(0,0);
+    transform-origin: 50% -25%;
+    z-index: 5;
+    border-radius: 75%;
+    min-height: 10em;
+    overflow-y: auto;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: white;
+    transition: all 0.5s;
+}
+
+.post-body-ctn:last-child .likes-ctn {
+  top: -400%;
+  transform-origin: 50% 120%;
+}
+
+.likes-ctn--no-likes {
+  height: 1.5em;
+  overflow-y: hidden;
+}
+
+.no-likes-ctn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-likes-ctn > p {
+  display: inline-block;
+  font-size: 1rem;
+  color: gray;
+}
+
+.post-body-ctn:last-child .likes-ctn--no-likes {
+  top: -100%;
+}
+
+.likes-ctn > .profile-ctn > .prof-details-ctn {
+  padding: 0 1em;
+}
+
+.show-ctn {
+    transform: scale(1,1);
+    opacity: 1;
+    border-radius: 0.15em;
+}
+
+.toggle-btn {
+    padding: 0.25em;
+    height: 100%;
+    padding-right: 0.5em;
+    
+}
+
+.toggle-btn img {
+    transform: rotate(0);
+    transition: transform 0.5s;
+    transform-origin: center;
+}
+  /* @keyframes tgl-btn-anim {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  } */
+
+  /* @keyframes tgl-btn-anim--flipped {
+    0% {
+      transform: rotate(-180deg) translateY(0);
+    }
+    50% {
+      transform: rotate(-180deg) translateY(10%);
+    }
+    100% {
+      transform: rotate(-180deg) translateY(0);
+    }
+  } */
+
+  @keyframes tgl-btn-anim--active {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+  
+  /* .toggle-btn:hover {
+    animation: tgl-btn-anim 1s ease-in-out infinite;
+  } */
+  
+.toggle-btn--active img {
+  transform: rotate(180deg) translateY(2px);
+  /* animation: tgl-btn-anim--active 0.5s ease-in-out forwards; */
+}
+/* 
+  .toggle-btn--active:hover {
+    animation: tgl-btn-anim--flipped 1s ease-in-out infinite;
+  } */
+  
+.likes-ctn .profile-ctn {
+  font-size: 0.925rem;
+  height: 4.5em;
+}
+  

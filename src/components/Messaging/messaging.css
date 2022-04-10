@@ -1,0 +1,226 @@
+.dming-ctn-wrapper {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dming-ctn {
+    width: 75vw;
+    height: 82.5vh;
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+}
+
+.dm-ctn {
+    width: 65%;
+    height: 100%;
+    /* border: 1px solid black; */
+    overflow: hidden;
+}
+
+.frnds-ctn {
+    width: 35%;
+    height: 100%;
+    /* border: 1px solid black; */
+}
+
+.frnds-ctn > input {
+    width: 100%;
+    height: 40px;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    margin-bottom: 1px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    transform: border 0.25s;
+}
+
+.frnds-ctn > input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--prim-blue);
+}
+
+.new-chat {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.new-chat > a {
+    color: lightblue;
+    transition: color 0.25s;
+}
+
+.new-chat > a:hover {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.dms-ctn-scroll-wrapper {
+    width: 100%;
+    height: 82.5%;
+    /* display: flex;
+    flex-direction: row; */
+    /* overflow: scroll; */
+}
+
+.dms-ctn {
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.5em;
+    overflow-y: auto;
+}
+
+.dms-ctn--active {
+    height: 82.5%;
+    border-left: 0;
+    align-items: initial;
+    justify-content: initial;
+
+    flex-direction: column-reverse;
+    align-content: flex-end;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12) inset, 0 1px 4px rgba(0,0,0,0.24) inset;
+}
+
+.dm-sction-date {
+    align-self: center;
+    font-size: 0.925rem;
+    margin: 0.25em 0;
+    padding: 0.5em 1em;
+    border-radius: 0.75em;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: darkslategray;
+    color: white;
+}
+
+.dm-inpt-ctn {
+    border-top: 1px solid lightgray;
+    height: calc(100% - (75px + 82.5%));
+    display: flex;
+    padding: 2px;
+}
+
+.dm-inpt-ctn > input {
+    width: 90%;
+    height: 100%;
+    font-size: 0.925rem;
+    padding: 0 1.25em;
+    border-radius: 0.25em;
+}
+
+.dm-inpt-ctn > input:focus {
+    outline: 2px solid var(--prim-blue);
+}
+
+.send-dm-btn {
+    width: 10%;
+    background-color: white;
+    padding: 0 0 0 0.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.25s;
+}
+
+.send-dm-btn > img {
+    width: 90%;
+    height: 90%;
+    display: block;
+}
+
+.dm-btn-disb {
+    pointer-events: none;
+}
+
+.dm-btn-disb > img {
+    opacity: 0.4;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .dming-ctn-wrapper {
+        min-height: calc(100vh - 142.5px);
+        margin-bottom: 70px;
+    }
+
+    .dming-ctn {
+        position: relative;
+        display: block;
+        width: 100%;
+        /* height: calc(100vh + 250px); */
+        /* margin-bottom: 70px; */
+        overflow: hidden;
+    }
+
+    .dming-ctn__switcher {
+        height: 65px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .dming-ctn__switcher > button {
+        position: relative;
+        font-size: 1rem;
+        width: 50%;
+        height: 100%;
+        background-color: transparent;
+        transition: transform 0.25s;
+    }
+
+    .dming-ctn__switcher > button:first-child {
+        border-right: 1px solid lightgray;
+    }
+
+    .active-switcher-btn::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        width: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -2px;
+        background-color: black;
+    }
+
+    .frnds-ctn {
+        width: 100%;
+        position: absolute;
+    }
+
+    .dm-ctn {
+        position: absolute;
+        width: 100%;
+        /* height: 90%; */
+    }
+
+    .dm-ctn__prof {
+        display: flex;
+    }
+
+    .dm-ctn__prof > img {
+        width: 50px;
+        padding: 0 5px;
+    }
+
+    .dms-ctn {
+        padding-bottom: 2.25em;
+    }
+
+    .dm-inpt-ctn {
+        position: fixed;
+        min-height: 50px;
+        bottom: 65px;
+        width: 100%;
+        padding: 0;
+        border-bottom: 4px solid lightgray;
+        z-index: 5;
+    }
+}

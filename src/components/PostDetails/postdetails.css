@@ -1,0 +1,143 @@
+.post-details-ctn {
+  /* position: relative; */
+  /* display: flex;
+  justify-content: space-around; */
+  padding: 0em 1em;
+  border-top: 1px solid lightgray;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.pst-det-ctn--mod {
+  /* justify-content: flex-start; */
+  position: relative !important;
+}
+
+.pst-det-ctn--mod .likes-ctn {
+  top: -11.5em;
+  transform-origin: 50% 125%;
+}
+
+.details-ctn {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5em 0;
+}
+
+.post-details-ctn button {
+  font-size: 0.925rem;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.like-btn-ctn {
+  display: flex;
+  position: relative;
+}
+
+.like-btn {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 0.5em;
+  outline: none;
+}
+
+.like-btn::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  right: 7%;
+  z-index: 1;
+}
+
+.like-btn img {
+  margin-left: 0.5em;
+  width: 50px;
+  height: 50px;
+  z-index: 0;
+}
+
+.like-icon {
+  margin-top: 5px;
+  width: 45px !important;
+  height: 45px !important;
+}
+
+@keyframes like-svg-ani {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.like-btn-svg-path path {
+  fill: white;
+  stroke: black;
+  transition: fill 0.25s ease-in-out, stroke 0.25s ease-in-out;
+}
+
+/* .like-btn-svg-path:hover svg {
+  animation: like-svg-anim 0.5s ease-in-out forwards;
+} */
+
+.liked-svg path {
+    fill: #FF0000;
+    stroke: none;
+}
+
+.comments-btn-ctn {
+  position: relative;
+}
+
+.comments-btn {
+  height: 100%;
+  outline: none;
+}
+
+.input-cmt-ctn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-top: 1px solid lightgray;
+}
+
+.input-cmt-ctn textarea {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.925rem;
+  display: block;
+  padding: 0.5em;
+  /* box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), inset 0 3px 6px rgba(0,0,0,0.23); */
+  width: 90%;
+  resize: none;
+}
+
+.input-cmt-ctn textarea:focus {
+  outline: none;
+  border-bottom: 2px solid var(--prim-blue);
+  caret-color: var(--prim-blue);
+}
+
+.input-cmt-ctn button {
+  width: 10%;
+  color: var(--prim-blue);
+}
+
+.post-cmt-btn-dis {
+  pointer-events: none;
+  opacity: 0.5;
+}

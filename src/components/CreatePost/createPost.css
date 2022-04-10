@@ -1,0 +1,129 @@
+.crt-pst {
+  /* border: 1px solid red; */
+  height: 300px;
+  width: 300px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 1em;
+  border-radius: 0.25em;
+}
+
+.crt-pst--prev-active {
+  display: flex;
+  height: 500px;
+  width: 80vw;
+  height: 50vw;
+  padding: 0;
+}
+
+.crt-pst__img-prv-ctn {
+  height: 100%;
+  width: 70%;
+}
+
+.crt-pst__img-prv-ctn > .post-images-ctn {
+  margin-top: 0;
+  height: 100% !important;
+}
+
+#new-post-form {
+  height: 100%;
+  /* background-color: white; */
+  /* border: 1px solid black; */
+  border-radius: 0.25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#new-post-form > button[type="submit"] {
+  background-color: var(--prim-blue);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  transition: background-color 0.25s;
+}
+
+#new-post-form > button[type="submit"]:hover {
+  background-color: #008086;
+}
+
+.crt-pst--prev-active > #new-post-form {
+  width: 30%;
+}
+
+.crt-pst-txt {
+  font-size: 1rem;
+  width: 100%;
+
+  margin-bottom: 0.5em;
+  border-radius: 0 0 0.35em 0.35em;
+  border-bottom: 1px solid gray;
+
+  resize: none;
+  transition: border-bottom 0.25s;
+}
+
+.crt-pst-txt:focus {
+  outline: none;
+  border-bottom: 1px solid var(--prim-blue);
+}
+
+.crt-pst-lbl {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  width: fit-content;
+  background-color: darkgray;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  transition: background-color 0.25s;
+}
+
+.crt-pst-lbl:hover {
+  cursor: pointer;
+  background-color: rgb(139, 139, 139);
+}
+
+#upld-pst {
+  width: 250px;
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .crt-pst {
+    height: 400px;
+    width: 95vw;
+    flex-direction: column;
+  }
+
+  .crt-pst--prev-active {
+    width: 90vw;
+    height: 600px;
+  }
+
+  #new-post-form {
+    width: 100%;
+  }
+
+  .crt-pst--prev-active > #new-post-form {
+    width: 100%;
+    height: 30%;
+  }
+
+  .crt-pst__img-prv-ctn {
+    width: 100%;
+    height: 70%;
+  }
+
+  .crt-pst-txt {
+    overflow: auto !important;
+  }
+
+  .crt-pst-lbl {
+    font-size: 1rem;
+  }
+}
