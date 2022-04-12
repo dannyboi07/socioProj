@@ -32,7 +32,7 @@
 
 .status-notif--err-active {
     background-color: #ffcccb;
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(10px) !important;
     /* top: 10px; */
 }
 
@@ -47,7 +47,7 @@
 
 .status-notif--active {
     background-color: #d7ffd9;
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(10px) !important;
     /* top: 10px; */
 }
 

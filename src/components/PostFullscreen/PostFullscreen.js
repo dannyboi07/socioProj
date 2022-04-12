@@ -47,7 +47,7 @@ function PostFullscreen({ post, onlyPost }) {
 
         if (onlyPost) {
             const postId = params.postId;
-            console.log("Param PostId", postId);
+
             getPost(postId)
                 .then(resPost => setSinglePost(resPost))
                 .catch(err => {
@@ -148,15 +148,6 @@ function PostFullscreen({ post, onlyPost }) {
     }
 
     if (!post) {
-        // console.log("in !post");
-        // if (failure) {
-        //     return (
-        //         <div className="flscrn-post-ctn">
-        //         <FailureComp />
-        //     </div>
-        //     )  
-        // }
-
         return (
 
             <div className="flscrn-post-ctn">

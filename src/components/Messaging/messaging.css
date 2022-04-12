@@ -193,11 +193,13 @@
     .frnds-ctn {
         width: 100%;
         position: absolute;
+        transition: left 0.25s;
     }
 
     .dm-ctn {
         position: absolute;
         width: 100%;
+        transition: left 0.25s;
         /* height: 90%; */
     }
 

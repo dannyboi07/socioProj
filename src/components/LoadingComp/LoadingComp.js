@@ -13,7 +13,7 @@ function LoadingComp({ mini }) {
         //     </div>
         // </div>
         <div className={ `loader-ctn ${mini ? "smaller-ctn" : ""}` }>
-            <span class="loader"></span>
+            <span className="loader"></span>
         </div>
     )
 }

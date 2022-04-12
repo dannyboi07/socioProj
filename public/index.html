@@ -50,12 +50,12 @@
 
           if (userDetails) {
             try {
-              const registration = await navigator.serviceWorker.register("https://secure-meadow-40264.herokuapp.com/serviceWorker.js");
+              const registration = await navigator.serviceWorker.register("http://localhost:3000/serviceWorker.js");
               console.log(`Registration scope is: ${registration.scope}`);
 
               console.log("Registering Push...");
               navigator.serviceWorker.ready.then(ServiceWorkerRegistration => {
-                fetch("https://secure-meadow-40264.herokuapp.com/api/subscribe/pubkey", {
+                fetch("http://localhost:3500/api/subscribe/pubkey", {
                   method: "GET"
                 })
                 .then(res => res.json())
@@ -71,7 +71,7 @@
                     console.log("Push registered");
 
                     console.log("Sending push...");
-                    fetch("https://secure-meadow-40264.herokuapp.com/api/subscribe", {
+                    fetch("http://localhost:3500/api/subscribe", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",

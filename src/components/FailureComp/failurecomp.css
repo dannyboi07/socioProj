@@ -1,3 +1,7 @@
+.fail-fs-ctn {
+    height: calc(100vh - 150px);
+}
+
 .fail-ctn {
     width: 100%;
     min-height: 100%;

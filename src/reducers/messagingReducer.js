@@ -18,7 +18,7 @@ export default function messagingReducer(state = null, action) {
         case "ADD_MSG": 
             return {
                 contacted: [ ...state.contacted ],
-                messages: [ ...state.messages, ...action.data ]
+                messages: [ ...action.data, ...state.messages ]
             };
         case "ADD_NEW_CHAT":
             let exists = false;

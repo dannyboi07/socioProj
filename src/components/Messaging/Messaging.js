@@ -86,7 +86,7 @@ function Messaging() {
     useEffect(() => {
         if (window.screen.width < 768) {
             if (params.username) {
-                setMobileSwitch([ window.screen.width, 0 ]);
+                setMobileSwitch([ -1 * window.screen.width, 0 ]);
             } else setMobileSwitch([ 0, window.screen.width ]);
         };
 
@@ -219,11 +219,39 @@ function Messaging() {
                                         <>
                                             {
                                                 messagingState?.messages.map((message, i) => 
-                                                    i === (messagingState.messages.length - 1) ? 
-                                                        <Fragment key={message.msg_id}>
-                                                            <Message                                  
+                                                i === (messagingState.messages.length - 1) ? 
+                                                    <Fragment key={message.msg_id}>
+                                                        <Message                                  
+                                                        uId={ user.uId } 
+                                                        uIdFrom={ message.u_id_from }
+                                                        msgText={ message.msg_text }
+                                                        time={ message.time }
+                                                        />
+                                                        {            
+                                                            <p className="dm-sction-date">
+                                                                { message.date }
+                                                            </p>
+                                                            
+                                                        }
+                                                        
+                                                    </Fragment>
+
+                                                :   messagingState.messages[i+1].date === message.date ?
+                                                    
+                                                        <Message 
+                                                        key={ message.msg_id } 
+                                                        uId={ user.uId } 
+                                                        uIdFrom={ message.u_id_from }
+                                                        msgText={ message.msg_text }
+                                                        time={ message.time }
+                                                        />
+                                                    
+                                                    :   <Fragment key={message.msg_id}>
+                                                            <Message                                            
                                                             uId={ user.uId } 
-                                                            message={ message }
+                                                            uIdFrom={ message.u_id_from }
+                                                            msgText={ message.msg_text }
+                                                        time={ message.time }
                                                             />
                                                             {            
                                                                 <p className="dm-sction-date">
@@ -231,26 +259,6 @@ function Messaging() {
                                                                 </p>
                                                             }
                                                         </Fragment>
-
-                                                    :   messagingState.messages[i+1].date === message.date ?
-                                                        
-                                                            <Message 
-                                                            key={ message.msg_id } 
-                                                            uId={ user.uId } 
-                                                            message={ message }
-                                                            />
-                                                        
-                                                        :   <Fragment key={message.msg_id}>
-                                                                <Message                                            
-                                                                uId={ user.uId } 
-                                                                message={ message }
-                                                                />
-                                                                {            
-                                                                    <p className="dm-sction-date">
-                                                                        { message.date }
-                                                                    </p>
-                                                                }
-                                                            </Fragment>
                                                 )
                                             }
                                         </>
@@ -283,6 +291,14 @@ function Messaging() {
         )
     }
 
+    // messagingState.messages.forEach(message => {
+    //     const odate = new Date(message.date_time);
+    //     console.log(odate.toString().split(" "));
+    // });
+
+    // function isSameDay(d1, d2) {
+    //     return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
+    // }
     return (
         <div className="dming-ctn-wrapper">
 
@@ -357,13 +373,17 @@ function Messaging() {
                                                     <Fragment key={message.msg_id}>
                                                         <Message                                  
                                                         uId={ user.uId } 
-                                                        message={ message }
+                                                        uIdFrom={ message.u_id_from }
+                                                        msgText={ message.msg_text }
+                                                        time={ message.time }
                                                         />
                                                         {            
                                                             <p className="dm-sction-date">
                                                                 { message.date }
                                                             </p>
+                                                            
                                                         }
+                                                        
                                                     </Fragment>
 
                                                 :   messagingState.messages[i+1].date === message.date ?
@@ -371,13 +391,17 @@ function Messaging() {
                                                         <Message 
                                                         key={ message.msg_id } 
                                                         uId={ user.uId } 
-                                                        message={ message }
+                                                        uIdFrom={ message.u_id_from }
+                                                        msgText={ message.msg_text }
+                                                        time={ message.time }
                                                         />
                                                     
                                                     :   <Fragment key={message.msg_id}>
                                                             <Message                                            
                                                             uId={ user.uId } 
-                                                            message={ message }
+                                                            uIdFrom={ message.u_id_from }
+                                                            msgText={ message.msg_text }
+                                                        time={ message.time }
                                                             />
                                                             {            
                                                                 <p className="dm-sction-date">

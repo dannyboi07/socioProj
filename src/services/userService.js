@@ -3,7 +3,6 @@ import axios from "axios";
 const baseUrl = "https://secure-meadow-40264.herokuapp.com/api/user"
 
 async function getUser(userName, token = null) {
-    // console.log("sent req", token);
     if (token) {
         const response = await axios.get(`${baseUrl}?uname=${userName}`, {
             headers: {

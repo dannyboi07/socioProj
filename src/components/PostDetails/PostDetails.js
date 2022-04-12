@@ -62,6 +62,7 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(()=> {
       setLikestate({ display: "block" });
+      console.log("blocking likes");
 
       setTimeout(() => {
         profListRef.current.classList.add("show-ctn");
@@ -72,6 +73,7 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
   
   function hideLikes() {
     if (timer) clearTimeout(timer);
+    console.log("unblocking likes");
 
     profListRef.current.classList.remove("show-ctn");
     arwBtn.current.classList.remove("toggle-btn--active");
@@ -119,7 +121,6 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
 
   function showComms() {
     if (!comsResults) getComms();
-    // console.log(comsResults);
 
     if (commTimer) clearTimeout(commTimer);
     commTimer = setTimeout(() => {
@@ -183,9 +184,18 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
             <img className={ ulikedOrNot ? "" : "like-icon" } src={ ulikedOrNot ? "/liked-svg.gif" : "/heart.svg" } alt="like-icon"/>
           </button>
 
-          <ProfileList className="likes-ctn" postId={postId} likestate={likestate} likeResults={likeResults} profListRef={profListRef}/>
+          <ProfileList 
+          className="likes-ctn" 
+          postId={postId} 
+          likestate={likestate} 
+          likeResults={likeResults} 
+          profListRef={profListRef}/>
 
-          <button id={`tglBtn${postId}`} className="toggle-btn" onClick={showLikesAsBlock} ref={arwBtn}>
+          <button 
+          id={`tglBtn${postId}`} 
+          className="toggle-btn" 
+          onClick={showLikesAsBlock} 
+          ref={arwBtn}>
             <img src="/icon-arrow-down.svg" alt="toggle-likes"/>
           </button>
 

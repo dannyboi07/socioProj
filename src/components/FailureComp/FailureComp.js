@@ -4,10 +4,28 @@ import { setFailure } from '../../reducers/failureReducer';
 import { useHistory } from 'react-router-dom';
 import "./failurecomp.css";
 
-function FailureComp() {
+function FailureComp(notFound) {
     const failureState = useSelector(state => state.failure);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    if (notFound) {
+        return (
+            <div className="fail-fs-ctn">
+                <div className="fail-ctn">
+                    <img src="/error-404.svg" alt="404-icon" />
+                    <p>
+                        Broken link
+                    </p>
+                    <button 
+                    className="frnd-btn" 
+                    onClick={ () => history.replace("/home", null)}>
+                        Back to home
+                    </button>
+                </div>
+            </div>
+        )
+    }
 
     if (failureState) {
         

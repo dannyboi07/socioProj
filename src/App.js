@@ -15,6 +15,7 @@ import { addNotif, getAllNotifs } from "./reducers/notificationReducer";
 import Messaging from "./components/Messaging/Messaging";
 import { addMsg } from "./reducers/messagingReducer";
 import NewChat from "./components/NewChat/NewChat";
+import FailureComp from "./components/FailureComp/FailureComp";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ function App() {
           if (e.data.reqtype === "GET_TOKEN") {
             navigator.serviceWorker.controller.postMessage({ token: user.token, primaryKey: e.data.primaryKey });
           }
-          if (e.data.notifType === "message" && location.pathname.includes("/messages") && location.pathname.includes(e.data.title.replace(/ /g, '').toLowerCase())) {
+          if (e.data.notifType === "message"
+              && location.pathname.includes("/messages") 
+              && location.pathname.includes( new URL(e.data.url).pathname.split("/")[2] )) {
 
             // Sending object to redux in an array to use ...rest operator over just action.data since 
             // the action handler requires the data passed to be iterable and we can reuse the same action handler
@@ -48,7 +51,7 @@ function App() {
             navigator.serviceWorker.controller.postMessage({ token: user.token, primaryKey: e.data.primaryKey })
           }
           else {
-            console.log("else adding notif");
+            //console.log("else adding notif");
             dispatch(addNotif( [{
               primaryKey: e.data.primaryKey,
               title: e.data.title,
@@ -145,12 +148,15 @@ function App() {
           <Home />
         </Route>
 
-        {/* <Route exact path="/">
-          <div></div>
-        </Route> */}
+        <Route exact path="/">
+          <Redirect to="/home"/>
+        </Route>
 
         <Route path="/*">
-          <p>Not found</p>
+        <FailureComp notFound={true}/>
+          {/* <p>
+            not notFound
+          </p> */}
         </Route>
       </Switch>
     </div>

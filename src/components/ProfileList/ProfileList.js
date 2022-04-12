@@ -1,5 +1,5 @@
 import React from 'react';
-// import LoadingComp from '../LoadingComp/LoadingComp';
+import LoadingComp from '../LoadingComp/LoadingComp';
 import Profile from '../Profile/Profile';
 import "./ProfileList.css";
 
@@ -8,9 +8,9 @@ function ProfileList({ postId, className, likestate, likeResults, profListRef })
 
     if (!likeResults) {
         return (
-            <div id={`likes${postId}`} className={`${className} likes-ctn--no-likes`} style={ likestate } ref={ profListRef }>
-                {/* <LoadingComp /> */}
-                <p>Loading...</p>
+            <div id={`likes${postId}`} className={`${className}`} style={ likestate } ref={ profListRef }>
+                <LoadingComp />
+                {/* <p>Loading...</p> */}
             </div>
         )
     }

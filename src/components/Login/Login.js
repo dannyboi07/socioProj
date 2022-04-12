@@ -13,7 +13,9 @@ function Login() {
     e.preventDefault();
 
     const userDetails = {
-      username, password
+      username, 
+      password, 
+      u_time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone
     };
     dispatch(dispatchLogin(userDetails));
     setUsername(""); setPassword("");
