@@ -5,7 +5,13 @@ div {
 
 .home-ctn {
     display: flex;
-    min-height: 100vh;
+    min-height: calc(100vh - 75px);
     /* width: 100vw; */
     justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .home-ctn {
+        min-height: calc(100vh - 135px);
+    }
 }

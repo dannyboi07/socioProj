@@ -37,7 +37,6 @@ function getAllNotifs(token) {
         let response;
         try {
             response = await getNotifs(token);
-            console.log(response);
         } catch (error) {
             console.error(error);
             dispatch(setFailure("NOTIF", { 

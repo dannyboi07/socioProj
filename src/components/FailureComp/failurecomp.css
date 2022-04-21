@@ -1,5 +1,5 @@
 .fail-fs-ctn {
-    height: calc(100vh - 150px);
+    height: calc(100vh - 75px);
 }
 
 .fail-ctn {
@@ -17,15 +17,20 @@
 }
 
 .fail-ctn > button {
-    background-color: var(--prim-blue);
     font-size: 0.825rem;
     margin-top: 1em;
     padding: 0.5em 1em;
-    border-radius: 0.5em;
-    color: white;
+
+    border-radius: 0.35em;
 }
 
 .fail-warning-img {
     width: 10%;
     margin-bottom: 0.25em;
+}
+
+@media only screen and (max-width: 768px) {
+    .fail-fs-ctn {
+        height: calc(100vh - 150px);
+    }
 }

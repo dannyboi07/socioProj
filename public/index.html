@@ -50,7 +50,7 @@
 
           if (userDetails) {
             try {
-              const registration = await navigator.serviceWorker.register("http://localhost:3000/serviceWorker.js");
+              const registration = await navigator.serviceWorker.register("/serviceWorker.js");
               console.log(`Registration scope is: ${registration.scope}`);
 
               console.log("Registering Push...");
@@ -78,9 +78,7 @@
                         "Authorization": `Bearer ${userDetails.token}`
                       },
                       body: JSON.stringify(PushSubscription),
-                    })
-                    .then(res => res.json())
-                    .then(data => console.log(data));
+                    });
                     console.log("Push sent...");
 
                   })

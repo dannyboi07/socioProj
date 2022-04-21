@@ -55,28 +55,27 @@
     margin-top: 0.075em;
     display: inline;
     width: fit-content;
-    position: relative;
-    color: lightslategray;
+    color: gray;
 }
 
-.prof-details-ctn a::before {
+/* .prof-details-ctn a::before {
     position: absolute;
     bottom: 3px;
     left: 0;
     content: "";
     width: 100%;
     height: 1px;
-    background-color: lightslategray;
+    background-color: gray;
     border-radius: 5em;
 
     transform-origin: left;
     transform: scale(0);
     transition: transform 0.3s ease-in-out;
-}
+} */
 
-.prof-details-ctn a:hover::before {
+/* .prof-details-ctn a:hover::before {
     transform: scale(1);
-}
+} */
 
 .username:hover {
     cursor: pointer;
@@ -90,16 +89,16 @@
     padding: 0.75em 1em;
     border-radius: 0.25em;
 
-    color: white;
+    /* color: white; */
     letter-spacing: 0.25px;
     transition: background-color 0.25s, color 0.25s;
 }
 
 .frnd-btn {
     background-color: var(--prim-blue);
-    color: white;
+    /* color: white; */
 }
-
+/* 
 .frnd-btn:hover {
     background-color: #029199;
 }
@@ -111,4 +110,4 @@
 
 .unfrnd-btn:hover {
     background-color: rgb(139, 139, 139);
-}
+} */

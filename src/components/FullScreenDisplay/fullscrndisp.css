@@ -22,7 +22,10 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    
+    background-color: #80808099;
+    background-color: rgba(80, 80, 80, 0.7);
+    backdrop-filter: blur(3px);
     z-index: 11;
 }
 

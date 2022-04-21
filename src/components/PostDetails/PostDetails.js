@@ -4,8 +4,11 @@ import { likePostRdx, unLikePostRdx } from '../../reducers/postblogReducer';
 import { getPostComms, getPostLikers, postComm } from '../../services/contentService';
 import ProfileList from '../ProfileList/ProfileList';
 import CommentsList from "../CommentsList/CommentsList";
+import { Text } from '../../styledComponents/Text';
 import "./postdetails.css";
 import { setStatusNotif } from '../../reducers/statusNotifReducer';
+import { TextActionCol } from '../../styledComponents/TextActionCol';
+import { TextArea } from '../../styledComponents/CommInput';
 
 function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
   const dispatch = useDispatch();
@@ -62,7 +65,6 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(()=> {
       setLikestate({ display: "block" });
-      console.log("blocking likes");
 
       setTimeout(() => {
         profListRef.current.classList.add("show-ctn");
@@ -73,7 +75,6 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
   
   function hideLikes() {
     if (timer) clearTimeout(timer);
-    console.log("unblocking likes");
 
     profListRef.current.classList.remove("show-ctn");
     arwBtn.current.classList.remove("toggle-btn--active");
@@ -179,7 +180,9 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
             onTouchEnd={hideLikes}
             onMouseOver={showLikes} 
             onMouseOut={hideLikes}>
-            { likesCount }
+            <Text>
+              { likesCount }
+            </Text>
 
             <img className={ ulikedOrNot ? "" : "like-icon" } src={ ulikedOrNot ? "/liked-svg.gif" : "/heart.svg" } alt="like-icon"/>
           </button>
@@ -207,7 +210,11 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
           onTouchEnd={hideComms}
           onMouseOver={showComms}
           onMouseOut={hideComms}>
-            Comments: { comCount } 
+
+            <Text>
+              Comments: { comCount }
+            </Text> 
+            
           </button>
 
           <button 
@@ -228,17 +235,23 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
       </div>
 
       <div className="input-cmt-ctn">
-        <textarea
+        <TextArea
         value={ comInputState }
         onChange={e => setComInputState(e.target.value)}
         placeholder='Comment...'
         ref={comInputRef}/>
+
         <button 
         className={ comInputState === "" ? "post-cmt-btn-dis" : "" } 
         onClick={ postComment } disabled={ comInputState === "" ? true : false } 
         ref={ comSubRef }>
-          Post
+
+          <TextActionCol>
+            Post
+          </TextActionCol>
+
         </button>
+
       </div>
     </div>
   );

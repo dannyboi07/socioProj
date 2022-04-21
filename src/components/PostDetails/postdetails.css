@@ -105,8 +105,20 @@
 }
 
 .comments-btn {
+  position: relative;
   height: 100%;
   outline: none;
+}
+
+.comments-btn::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
 }
 
 .input-cmt-ctn {
@@ -126,11 +138,11 @@
   resize: none;
 }
 
-.input-cmt-ctn textarea:focus {
+/* .input-cmt-ctn textarea:focus {
   outline: none;
   border-bottom: 2px solid var(--prim-blue);
   caret-color: var(--prim-blue);
-}
+} */
 
 .input-cmt-ctn button {
   width: 10%;

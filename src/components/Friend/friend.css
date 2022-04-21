@@ -1,25 +1,27 @@
 .frnd-ctn {
-    display: flex;
-    align-items: center;
     width: 100%;
     height: 85px;
     padding: 0.5em;
-    border-bottom: 1px solid lightgray;
+    
+    display: flex;
+    align-items: center;
+
     background-color: rgb(255, 255, 255);
     transition: background-color 0.25s, transform 0.25s;
 }
 
-.frnd-ctn--active {
-    background-color: rgb(209, 209, 209);
+/* .frnd-ctn--active {
+    /* background-color: rgb(209, 209, 209); */
+    /* background-color: brown !important;*/ /* Fighting for specificity with background-color applied by styled component */
     /* transform: scaleY(1.2); */
     /* background-color: rgba(255, 255, 255, 0); */
-}
-
+    /* filter: brightness(80%);
+} */
+/* 
 .frnd-ctn:not(.frnd-ctn--active):hover {
     cursor: pointer;
-    background-color: rgb(235, 235, 235);
-    /* transform: scaleY(1.1); */
-}
+    transform: scaleY(1.1);
+} */
 
 .frnd-left-ctn {
     height: 100%;

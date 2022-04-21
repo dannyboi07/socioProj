@@ -1,4 +1,5 @@
 .user-prof-ctn {
+    min-height: calc(100vh - 75px);
     & > hr {
         width: 80%;
         margin: 0 auto;

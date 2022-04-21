@@ -6,7 +6,6 @@
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;
-  background-color: white;
   padding: 1em;
   border-radius: 0.25em;
 }
@@ -41,16 +40,14 @@
 }
 
 #new-post-form > button[type="submit"] {
-  background-color: var(--prim-blue);
-  color: white;
   padding: 0.5em 1em;
   border-radius: 0.25em;
   transition: background-color 0.25s;
 }
 
-#new-post-form > button[type="submit"]:hover {
+/* #new-post-form > button[type="submit"]:hover {
   background-color: #008086;
-}
+} */
 
 .crt-pst--prev-active > #new-post-form {
   width: 30%;
@@ -67,11 +64,11 @@
   resize: none;
   transition: border-bottom 0.25s;
 }
-
+/* 
 .crt-pst-txt:focus {
   outline: none;
   border-bottom: 1px solid var(--prim-blue);
-}
+} */
 
 .crt-pst-lbl {
   margin-top: 0.5em;

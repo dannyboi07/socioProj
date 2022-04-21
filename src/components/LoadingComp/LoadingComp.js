@@ -1,5 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import styled from "styled-components";
 import "./loadingcomp.css";
+
+const StyledLoaderDiv = styled.span`
+    &::after {
+        border-color: transparent transparent ${props => props.theme.action} ${props => props.theme.action};
+    }
+`;
 
 function LoadingComp({ mini }) {
 
@@ -12,8 +20,9 @@ function LoadingComp({ mini }) {
         //         <span></span>
         //     </div>
         // </div>
-        <div className={ `loader-ctn ${mini ? "smaller-ctn" : ""}` }>
-            <span className="loader"></span>
+        <div
+        className={ `loader-ctn ${mini ? "smaller-ctn" : ""}` }>
+            <StyledLoaderDiv className="loader"></StyledLoaderDiv>
         </div>
     )
 }

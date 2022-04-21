@@ -5,6 +5,7 @@ import PostDetails from '../PostDetails/PostDetails';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { setFSData } from '../../reducers/fullScreenReducer';
+import { PrimBgDiv } from '../../styledComponents/PrimBgDiv';
 
 import "./postbody.css"
 
@@ -38,7 +39,7 @@ function PostBody({ post }) {
     //   };
 
     return (
-            <div className="post-body-ctn">
+            <PrimBgDiv className="post-body-ctn">
                 <Profile 
                     name={ post.name } 
                     username={ post.username } 
@@ -59,7 +60,7 @@ function PostBody({ post }) {
                     likes={ post.likes } 
                     liked={ post.liked } 
                     noComments={ post.no_comments } />
-            </div>
+            </PrimBgDiv>
     );
 }
 

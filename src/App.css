@@ -7,6 +7,10 @@ body {
   min-height: 100vh;
 }
 
+.app-root {
+  min-height: 100vh;
+}
+
 .clip-triangle {
   position: absolute;
   width: 25px;
@@ -20,7 +24,6 @@ body {
 input {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  caret-color: var(--prim-blue);
 }
 
 textarea {

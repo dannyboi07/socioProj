@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { sendPost } from '../../reducers/postblogReducer';
 import { setStatusNotif } from "../../reducers/statusNotifReducer";
 import MediaCarousel from '../MediaCarousel/MediaCarousel';
+import { PrimBgDiv } from "../../styledComponents/PrimBgDiv"
+import { Button } from '../../styledComponents/Button';
 import "./createPost.css";
+import { StyledInput } from '../../styledComponents/StyledInput';
 
 function CreatePost() {
   const dispatch = useDispatch();
@@ -15,7 +18,7 @@ function CreatePost() {
 
   useEffect(() => {
     //tx.current = document.querySelector(".crt-pst-txt");
-    tx.current.setAttribute("style", "height:1.8em;overflow-y:hidden;");
+    tx.current.setAttribute("style", "height:1.685em;overflow-y:hidden;");
     tx.current.addEventListener("input", OnInput, false);
     
     const txCleanUp = tx.current;
@@ -67,10 +70,9 @@ function CreatePost() {
 
     dispatch(sendPost(postContent, userToken));
   };
-  console.log(postImagesPrev);
 
   return (
-    <div className={`crt-pst ${postImagesPrev ? "crt-pst--prev-active" : "" }`}>
+    <PrimBgDiv className={`crt-pst ${postImagesPrev ? "crt-pst--prev-active" : "" }`}>
 
       {
         postImagesPrev &&
@@ -86,7 +88,7 @@ function CreatePost() {
       <form id="new-post-form" onSubmit={(e) => handleSubmit(e)}
       encType="multipart/form-data">
 
-        <textarea className="crt-pst-txt" type="text" 
+        <StyledInput className="crt-pst-txt" type="text" 
         name="post-text" 
         onChange={(e) => setPostText(e.target.value)} 
         value={ postText }
@@ -110,11 +112,11 @@ function CreatePost() {
           /> 
         </label>
 
-        <button type="submit">
+        <Button type="submit">
           Post
-        </button>
+        </Button>
      </form>
-    </div>
+    </PrimBgDiv>
   )
 }
 

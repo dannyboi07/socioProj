@@ -3,11 +3,15 @@ import { useHistory, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { followUser, unFollowUser } from '../../services/userService';
 import "./profile.css";
+import { Text } from '../../styledComponents/Text';
+import { Button } from "../../styledComponents/Button"
+import NameLink from '../../styledComponents/NameLink';
 
 function Profile({ name, username, profImgSrc, postUid, friends, inCmt, inMain }) {
   const history = useHistory();
   const userDetails = useSelector(state => state.user);
   const [ friend, setFriend ] = useState(friends);
+  
   // function handleUsernameClick() {
   //   history.push(`/users/${username}`);
   // };
@@ -39,15 +43,17 @@ function Profile({ name, username, profImgSrc, postUid, friends, inCmt, inMain }
         </div>
 
         <div className="prof-details-ctn">
-            <p>{ name }</p>
+            <Text>
+              { name }
+            </Text>
 
-            <Link to={`/users/${username}`}>
+            <NameLink to={`/users/${username}`}>
               @{ username }
-            </Link>
+            </NameLink>
         </div>
 
         { inMain && userDetails?.uId !== postUid && 
-          <button 
+          <Button 
           className={`friend-btn ${friend ? "unfrnd-btn" : "frnd-btn" }`} 
           onClick={ friendClickHandle }>
             {
@@ -57,7 +63,7 @@ function Profile({ name, username, profImgSrc, postUid, friends, inCmt, inMain }
                 : "Add friend"
               : "Add friend"
             }
-          </button>
+          </Button>
         }
     </div>
   );

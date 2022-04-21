@@ -11,6 +11,7 @@ import usersReducer from "./reducers/usersReducer";
 import statusNotifReducer from "./reducers/statusNotifReducer";
 import notificationReducer from "./reducers/notificationReducer";
 import messagingReducer from "./reducers/messagingReducer";
+import themeReducer from "./reducers/themeReducer";
 
 const reducer = combineReducers({ 
   user: userReducer,
@@ -20,7 +21,8 @@ const reducer = combineReducers({
   failure: failureReducer,
   statusNotif: statusNotifReducer,
   notifs: notificationReducer,
-  messaging: messagingReducer
+  messaging: messagingReducer,
+  theme: themeReducer
 });
 
 const store = createStore(

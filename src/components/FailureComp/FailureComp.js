@@ -3,27 +3,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setFailure } from '../../reducers/failureReducer';
 import { useHistory } from 'react-router-dom';
 import "./failurecomp.css";
+import { SecBgDiv } from '../../styledComponents/SecBgDiv';
+import { Button } from '../../styledComponents/Button';
 
-function FailureComp(notFound) {
+function FailureComp({ notFound }) {
     const failureState = useSelector(state => state.failure);
     const dispatch = useDispatch();
     const history = useHistory();
 
     if (notFound) {
         return (
-            <div className="fail-fs-ctn">
+            <SecBgDiv className="fail-fs-ctn">
                 <div className="fail-ctn">
                     <img src="/error-404.svg" alt="404-icon" />
                     <p>
                         Broken link
                     </p>
-                    <button 
+                    <Button 
                     className="frnd-btn" 
                     onClick={ () => history.replace("/home", null)}>
                         Back to home
-                    </button>
+                    </Button>
                 </div>
-            </div>
+            </SecBgDiv>
         )
     }
 
@@ -42,17 +44,17 @@ function FailureComp(notFound) {
         function ReloadBtn({ onClick, children }) {
 
             if (children) return (
-                <button className="frnd-btn" onClick={onClick}>
+                <Button className="frnd-btn" onClick={onClick}>
                     {
                         children
                     }
-                </button>
+                </Button>
             )
 
             return (
-                <button className="frnd-btn" onClick={onClick}>
+                <Button className="frnd-btn" onClick={onClick}>
                     Retry
-                </button>
+                </Button>
             )
         };
 

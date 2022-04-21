@@ -26,21 +26,24 @@
     /* border: 1px solid black; */
 }
 
-.frnds-ctn > input {
+.frnds-ctn > textarea {
     width: 100%;
     height: 40px;
-    padding: 0.5em 1em;
+
+    padding: 0.75em 1em 0 1em;
     border-radius: 0.5em;
-    margin-bottom: 1px;
+
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
+
+    resize: none;
     transform: border 0.25s;
 }
 
-.frnds-ctn > input:focus {
+/* .frnds-ctn > textarea:focus {
     outline: none;
     border-bottom: 1px solid var(--prim-blue);
-}
+} */
 
 .new-chat {
     height: 50px;
@@ -50,7 +53,7 @@
     font-size: 1rem;
 }
 
-.new-chat > a {
+/* .new-chat > a {
     color: lightblue;
     transition: color 0.25s;
 }
@@ -59,7 +62,7 @@
     color: blue;
     cursor: pointer;
     text-decoration: underline;
-}
+} */
 
 .dms-ctn-scroll-wrapper {
     width: 100%;
@@ -115,15 +118,17 @@
     font-size: 0.925rem;
     padding: 0 1.25em;
     border-radius: 0.25em;
+
+    background-color: transparent;
 }
 
-.dm-inpt-ctn > input:focus {
+/* .dm-inpt-ctn > input:focus {
     outline: 2px solid var(--prim-blue);
-}
+} */
 
 .send-dm-btn {
     width: 10%;
-    background-color: white;
+    background-color: transparent;
     padding: 0 0 0 0.25em;
     display: flex;
     align-items: center;

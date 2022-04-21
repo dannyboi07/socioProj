@@ -1,6 +1,7 @@
 import React from 'react';
 import MediaCarousel from '../MediaCarousel/MediaCarousel';
-import "./postcontent.css"
+import { Text } from "../../styledComponents/Text";
+import "./postcontent.css";
 
 function PostContent({ postId, postText, postImages, handleFsClick }) {
   // const [imgCtnWidth, setImgCtnWidth] = useState(null);
@@ -42,9 +43,9 @@ function PostContent({ postId, postText, postImages, handleFsClick }) {
 
   return (
     <div id={`pst-cntnt-ctn-${postId}`} className="post-content-ctn">
-        <p>
+        <Text>
           { postText }
-        </p>
+        </Text>
         { postImages?.length > 0 
           && 
           <MediaCarousel 

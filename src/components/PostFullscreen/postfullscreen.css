@@ -40,7 +40,7 @@
   display: flex;
   width: 80%;
   height: 50vw;
-  background-color: white;
+  border-radius: 0 0.35em 0.35em 0;
 }
 
 .flscrn-post-ctn__mob-ctn {
@@ -52,6 +52,7 @@
   height: 100%;
   margin-top: 0;
   border-right: 1px solid gray;
+  background-color: transparent !important;
 }
 
 .flscrn-post-ctn__right-ctn {
@@ -68,6 +69,7 @@
 .flscrn-post-ctn__right-ctn__text-ctn {
   padding: 1em;
   height: 100%;
+  overflow-y: auto;
 }
 
 .flscrn-post-ctn__right-ctn__text-ctn__text {

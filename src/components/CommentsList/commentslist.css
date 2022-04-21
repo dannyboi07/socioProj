@@ -8,7 +8,6 @@
     bottom: -250px;
 
     /* background-color: var(--prim-ghost-white); */
-    background-color: white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);;
     transform: scale(0,0);
     transform-origin: 80% -25%;

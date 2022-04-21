@@ -8,6 +8,9 @@ import LoadingComp from '../LoadingComp/LoadingComp';
 import FailureComp from '../FailureComp/FailureComp';
 import { getUserThunk } from '../../reducers/usersReducer';
 import { setStatusNotif } from "../../reducers/statusNotifReducer"
+import { Text } from '../../styledComponents/Text';
+import { Button } from '../../styledComponents/Button';
+//import { SecBgDiv } from '../../styledComponents/SecBgDiv';
 
 function UserProfile() {
     const params = useParams();
@@ -85,40 +88,49 @@ function UserProfile() {
                     <img className="user-prof-img" src={ userProf.imgloc } alt="Profile picture" />
                 </div>            
                     <div className="user-prof-right-ctn">
-                        <p>
+                        <Text>
                             { userProf.name }
-                        </p>
-                        <p>
+                        </Text>
+                        <Text>
                             { userProf.username }
-                        </p>
-                        <p>
+                        </Text>
+                        <Text>
                             { userProf.email }
-                        </p>
+                        </Text>
 
                         {  
 
                             user && user.uId !== userProf.u_id 
-                            ? <button id="user-flw-btn" className={`${follows ? "unfrnd-btn" : "frnd-btn"}`} onClick={ handleFollowBtnClick }>
+                            ? <Button id="user-flw-btn" className={`${follows ? "unfrnd-btn" : "frnd-btn"}`} onClick={ handleFollowBtnClick }>
                                 { follows ? "Unfriend" : "Add Friend" }
-                            </button>
-                            : <button>
+                            </Button>
+                            : <Button>
                                 Edit Profile
-                            </button>
+                            </Button>
                         }
                     </div>
                 </div>
             <hr className="user-cntnt-hr-top"/>
             <div className="user-cntnt-switch">
                 {
-                    userProf.posts && <button onClick={ handlePostsClick }>
-                        Posts
+                    userProf.posts && 
+                    <button onClick={ handlePostsClick }>
+                        {
+                            <Text>
+                                Posts
+                            </Text>
+                        }
                     </button>
                 }
                 {
                     true && <>
                         <hr />
                         <button onClick={ handleBlogsClick }>
-                            Blogs
+                            {
+                                <Text>
+                                    Blogs
+                                </Text>
+                            }
                         </button>
                     </> 
                 }

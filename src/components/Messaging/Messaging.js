@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react';
+import React, { useState, useEffect, useRef, Fragment, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 // import { getContacted, getMsgs } from '../../services/messageService';
@@ -13,6 +13,15 @@ import FailureComp from '../FailureComp/FailureComp';
 import { Link } from 'react-router-dom';
 import { setNewChat } from '../../reducers/fullScreenReducer';
 import { setStatusNotif } from '../../reducers/statusNotifReducer';
+import { SecBgDiv } from '../../styledComponents/SecBgDiv';
+import { PrimBgDiv } from '../../styledComponents/PrimBgDiv';
+import { StyledInput } from "../../styledComponents/StyledInput";
+import StyledNewChatLink from '../../styledComponents/NewChatLink';
+import StyledMsgInput from '../../styledComponents/StyledMsgInput';
+
+import sendBlack from "../../assets/send-b.svg";
+import sendWhite from "../../assets/send-w.svg";
+import { Text } from '../../styledComponents/Text';
 
 function Messaging() {
     const dispatch = useDispatch();
@@ -20,6 +29,9 @@ function Messaging() {
     const params = useParams();
     const location = useLocation();
     const user = useSelector(state => state.user);
+    
+    const primCol = useSelector(state => state.theme?.bgPrim);
+    const actionCol = useSelector(state => state.theme?.action);
 
     const messagingState = useSelector(state => state.messaging);
     const failureState = useSelector(state => state.failure?.type === "MSGING");
@@ -31,26 +43,33 @@ function Messaging() {
 
     const [mobileSwitch, setMobileSwitch] = useState([0, window.screen.width]);
 
+    const [contrast, setContrast] = useState(false)
+
     useEffect(() => {
 
         dispatch(getContactedRdx(user.token));
 
-        if (location.pathname.includes("/new" || "new/")) {     //First option indicates that new chat menu was open when this component was mounting, 
-            history.replace("/messages", [location.pathname]);  // second indicates that
-        }
-        return () => dispatch(clrMsging());
-    }, []);
+        // First path option indicates that the new chat menu was open when this component was mounting,
+        // second indicates that the user had opened a brand new chat with a contact, 
+        // I indicate that to the user by appending new/{friend's username}, and I remove either of the 
+        // paths if it exists on a page reload
+        if (location.pathname.includes("/new" || "new/")) {     
+            history.replace("/messages", [location.pathname]);  
+                                                                
+        };
 
-    useEffect(() => {
-
+        // Setting active state variable to an array of falses with the length as the number of friends
+        // the user has chatted with already
         if (messagingState?.contacted) {
             const temp = [];
             for (let i = 0; i < messagingState?.contacted.length; i++) {
                 temp.push(false);
             }
-            setActive([ ...temp ]);
+            setActive([ ...temp ]); 
         };
-    }, [messagingState?.contacted]);
+
+        return () => dispatch(clrMsging());
+    }, []);
 
     useEffect(() => {
 
@@ -79,9 +98,10 @@ function Messaging() {
         } 
         else if (!params.username) {
             setCurChat(null);
+            setActive([]);
         };
 
-    }, [params, messagingState?.contacted, curChat]);
+    }, [params, messagingState?.contacted]); // , curChat
 
     useEffect(() => {
         if (window.screen.width < 768) {
@@ -92,6 +112,23 @@ function Messaging() {
 
     }, [params]);
 
+    useEffect(() => {
+        function darkerIcons() {
+            const r = parseInt(primCol.substring(1, 3), 16);
+            const g = parseInt(primCol.substring(3, 5), 16);
+            const b = parseInt(primCol.substring(5, 7), 16);
+    
+            return (( r * 0.299 ) + ( g * 0.587 ) + ( b * 0.114 )) > 100;
+        };
+        setContrast(darkerIcons());
+        // Calling this as a bug fix cause when the theme is changed i.e global state theme primCol changes,
+        // the Navbar is triggered to rerender, but the classes on settingsToggleRef & settingsRef don't reset,
+        // since the classLists on stored on useRefs which don't change across renders aka in this case
+        // the classes on the Refs don't change since useRefs stay the same across rerenders
+        // but the toggle box collapses since the display state on it comes from a state variable
+        // which when the Navbar rerenders goes back to the default declaration state of display: none
+    }, [primCol]);
+
     function handleMsgSubmit() {
         if (msgInput !== "") {
             dispatch(postMsgRdx(user.token, curChat.u_id, msgInput));
@@ -101,59 +138,47 @@ function Messaging() {
 
     if (failureState) {
         return (
-            <div className="dming-ctn-wrapper">
-                <div className="dming-ctn">
+            <SecBgDiv className="dming-ctn-wrapper">
+                <PrimBgDiv className="dming-ctn">
                     <FailureComp />
-                </div>
-            </div>
+                </PrimBgDiv>
+            </SecBgDiv>
         );
     };
 
     if (!messagingState) {
         return (
-            <div className="dming-ctn-wrapper">
-                <div className="dming-ctn">
+            <SecBgDiv className="dming-ctn-wrapper">
+                <PrimBgDiv className="dming-ctn">
                     <LoadingComp />
-                </div>
-            </div>
+                </PrimBgDiv>
+            </SecBgDiv>
         );
     }; 
 
     if (window.screen.width < 768) {
         return (
-            <div className="dming-ctn-wrapper">
+            <SecBgDiv className="dming-ctn-wrapper">
 
-                <div className="dming-ctn">
-                    
-                    {/* <div className="dming-ctn__switcher">
-                        <button 
-                        className={`${params.username ? 
-                                        "" 
-                                        : "active-switcher-btn" }`}>
-                            Friends
-                        </button>
-
-                        <button
-                        className={`${params.username ? 
-                                        "active-switcher-btn" 
-                                        : ""}`}
-                        disabled={ params.username ? false : true }>
-                            Chat
-                        </button>
-                    </div> */}
+                <PrimBgDiv className="dming-ctn">
+                
                     <div
                     style={{ left: mobileSwitch[0] }}
                     className="frnds-ctn">
 
                         <div className="new-chat">
-                            <Link 
+
+                            <StyledNewChatLink 
                             to="/messages/new"
-                            onClick={() => dispatch(setNewChat())}>
+                            onClick={ () => dispatch(setNewChat()) }>
+
                                 New Chat
-                            </Link>
+
+                            </StyledNewChatLink>
+
                         </div>
 
-                        <input type="text" 
+                        <StyledInput type="text" 
                         value={ filter }
                         onChange={ e => setFilter(e.target.value.toLowerCase())}
                         placeholder="Search..."
@@ -210,8 +235,6 @@ function Messaging() {
                                 profImgSrc={ curChat.imgloc }/>
                             </div>
                         }
-
-                        {/* <div className="dms-ctn-scroll-wrapper"> */}
                             <div className={`dms-ctn ${curChat ? "dms-ctn--active" : "" }`}>
                                 {
                                     curChat ? 
@@ -270,7 +293,7 @@ function Messaging() {
 
                         {
                             curChat && 
-                            <div className="dm-inpt-ctn">
+                            <PrimBgDiv className="dm-inpt-ctn">
                                 <input 
                                 type="text" 
                                 name="msg-input"
@@ -280,14 +303,20 @@ function Messaging() {
                                 />
                                 <button 
                                 className={`send-dm-btn ${msgInput === "" ? "dm-btn-disb" : "" }`}
-                                onClick={ handleMsgSubmit }>
-                                    <img src="/send.svg" alt="send" />
+                                onClick={ handleMsgSubmit }
+                                title="Send Message">
+                                    {
+                                        contrast ? 
+                                            <img src={ sendBlack } alt="Send" />
+                                        :   <img src={ sendWhite } alt="Send" />
+                                    }
+                                    
                                 </button>
-                            </div>
+                            </PrimBgDiv>
                         }
                     </div>
-                </div>
-            </div>
+                </PrimBgDiv>
+            </SecBgDiv>
         )
     }
 
@@ -300,20 +329,20 @@ function Messaging() {
     //     return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
     // }
     return (
-        <div className="dming-ctn-wrapper">
+        <SecBgDiv className="dming-ctn-wrapper">
 
-            <div className="dming-ctn">
+            <PrimBgDiv className="dming-ctn">
 
                 <div className="frnds-ctn">
 
                     <div className="new-chat">
-                        <Link 
+                        <StyledNewChatLink 
                         to="/messages/new"
                         onClick={() => dispatch(setNewChat())}>
                             New Chat
-                        </Link>
+                        </StyledNewChatLink>
                     </div>
-                    <input type="text" 
+                    <StyledInput type="text" 
                     value={ filter }
                     onChange={ e => setFilter(e.target.value.toLowerCase())}
                     placeholder="Search..."
@@ -413,15 +442,15 @@ function Messaging() {
                                         }
                                     </>
                         
-                                :   <p>Select a chat</p>
+                                :   <Text>Select a chat</Text>
                             }
                         </div>
                     {/* </div> */}
 
                     {
                         curChat && 
-                        <div className="dm-inpt-ctn">
-                            <input 
+                        <PrimBgDiv className="dm-inpt-ctn">
+                            <StyledMsgInput 
                             type="text" 
                             name="msg-input"
                             value={ msgInput }
@@ -430,18 +459,23 @@ function Messaging() {
                             />
                             <button 
                             className={`send-dm-btn ${msgInput === "" ? "dm-btn-disb" : "" }`}
-                            onClick={ handleMsgSubmit }>
-                                <img src="/send.svg" alt="send" />
+                            onClick={ handleMsgSubmit }
+                            title="Send Message">
+                                {
+                                    contrast ? 
+                                        <img src={ sendBlack } alt="Send" />
+                                    :   <img src={ sendWhite } alt="Send" />
+                                }
                             </button>
-                        </div>
+                        </PrimBgDiv>
                     }
                 </div>
-            </div>
-        </div>
+            </PrimBgDiv>
+        </SecBgDiv>
     );
 };
 
-export default Messaging;
+export default memo(Messaging);
 
 //const contacted = useSelector(state => state.messaging?.contacted);
 //const messages = useSelector(state => state.messaging?.messages);

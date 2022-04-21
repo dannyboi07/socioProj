@@ -1,5 +1,8 @@
 import { createPost, getAllService, likePost, unlikePost } from "../services/contentService";
 import { setFailure } from "./failureReducer";
+import { setStatusNotif } from "./statusNotifReducer";
+import { dispatchLogOut } from "./userReducer";
+import changeroute from "../utils/customEvents";
 
 export default function postblogReducer(state = null, action) {
   switch(action.type) {
@@ -35,6 +38,12 @@ function getAll(token) {
     } catch (error) {
 
       console.error(error);
+      if (error.response && error.response.status === 401) {
+        dispatch(dispatchLogOut());
+        dispatch(setStatusNotif("SET_ERR_NOTIF", error.response.data.error, 3));
+        window.dispatchEvent(changeroute);
+        return;
+      };
       dispatch(setFailure("CONTENT", {
         func: getAll,
         param: token
@@ -51,7 +60,21 @@ function getAll(token) {
 
 function sendPost(postContent, token) {
   return async dispatch => {
-    const response = await createPost(postContent, token);
+    let response;
+    try {
+      
+      response = await createPost(postContent, token);
+    } catch (err) {
+      console.error(err);
+      if (error.response && error.response.status === 401) {
+        dispatch(dispatchLogOut());
+        dispatch(setStatusNotif("SET_ERR_NOTIF", error.response.data.error, 3));
+        window.dispatchEvent(changeroute);
+        return;
+      };
+      dispatch(setStatusNotif("SET_ERR_NOTIF", err.response.data.error, 3));
+      return;
+    }
     dispatch({
       type: "CREATE_POST",
       data: response
@@ -61,25 +84,51 @@ function sendPost(postContent, token) {
 
 function likePostRdx(postId, token) {
   return async dispatch => {
-    const response = await likePost(postId, token);
-    if (response.success) {
-      dispatch({
-        type: "LIKE_POST",
-        data: postId
-      });
+    let response;
+    try {
+      
+      response = await likePost(postId, token);
+    } catch (err) {
+      console.error(err);
+      if (error.response && error.response.status === 401) {
+        dispatch(dispatchLogOut());
+        dispatch(setStatusNotif("SET_ERR_NOTIF", error.response.data.error, 3));
+        window.dispatchEvent(changeroute);
+        return;
+      };
+      dispatch(setStatusNotif("SET_ERR_NOTIF", err.response.data.error, 3));
+      return;
     };
+    
+    dispatch({
+      type: "LIKE_POST",
+      data: postId
+    });
   };
 };
 
 function unLikePostRdx(postId, token) {
   return async dispatch => {
-    const response = await unlikePost(postId, token);
-    if (response.success) {
-      dispatch({
-        type: "UNLIKE_POST",
-        data: postId
-      });
-    };
+    let response;
+    try {
+      
+      response = await unlikePost(postId, token);
+      
+    } catch (err) {
+      console.error(err);
+      if (error.response && error.response.status === 401) {
+        dispatch(dispatchLogOut());
+        dispatch(setStatusNotif("SET_ERR_NOTIF", error.response.data.error, 3));
+        window.dispatchEvent(changeroute);
+        return;
+      };
+      dispatch(setStatusNotif("SET_ERR_NOTIF", err.response.data.error, 3));
+      return;
+    }
+    dispatch({
+      type: "UNLIKE_POST",
+      data: postId
+    });
   };
 };
 

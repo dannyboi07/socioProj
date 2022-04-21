@@ -1,11 +1,14 @@
 import React from 'react';
+import { FriendName } from '../../styledComponents/FriendName';
+import { SecBgDiv } from '../../styledComponents/SecBgDiv';
+import { Text } from '../../styledComponents/Text';
+import StyledFriend from '../../styledComponents/StyledFriend';
 import "./friend.css";
 
 function Friend({ username, name, imgloc, active, onClick }) {
-    //console.log(active);
 
     return (
-        <div 
+        <StyledFriend 
         className={`frnd-ctn ${active ? "frnd-ctn--active" : "" }`}
         onClick={ onClick }>
 
@@ -14,19 +17,19 @@ function Friend({ username, name, imgloc, active, onClick }) {
             </div>
 
             <div className="frnd-rgt-ctn">
-                <h5>
+                <FriendName>
                     {
                         name
                     }
-                </h5>
+                </FriendName>
 
-                <p>
+                <Text>
                     @{
                         username
                     }
-                </p>
+                </Text>
             </div>
-        </div>
+        </StyledFriend>
     );
 };
 

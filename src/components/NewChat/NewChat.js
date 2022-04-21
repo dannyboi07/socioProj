@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { setFailure } from '../../reducers/failureReducer';
 import { addChat } from '../../reducers/messagingReducer';
 import { getContacts } from '../../services/messageService';
+import { PrimBgDiv } from '../../styledComponents/PrimBgDiv';
+import { StyledInput } from '../../styledComponents/StyledInput';
+import { Text } from '../../styledComponents/Text';
 import FailureComp from '../FailureComp/FailureComp';
 import Friend from '../Friend/Friend';
 import LoadingComp from '../LoadingComp/LoadingComp';
@@ -37,17 +40,17 @@ function NewChat() {
 
     if (failureState) {
         return (
-            <div className="nw-chat-ctn">
+            <PrimBgDiv className="nw-chat-ctn">
                 <FailureComp />
-            </div>
+            </PrimBgDiv>
         )
     }
 
     if (!friends) {
         return (
-            <div className="nw-chat-ctn">
+            <PrimBgDiv className="nw-chat-ctn">
                 <LoadingComp mini={true} />
-            </div>
+            </PrimBgDiv>
         )
     }
 
@@ -77,12 +80,14 @@ function NewChat() {
     //         )
 
     return (
-        <div className="nw-chat-ctn">
-            <input type="text"
+        <PrimBgDiv className="nw-chat-ctn">
+
+            <StyledInput type="text"
             value={ filtered }
             onChange={ e => setFiltered(e.target.value.toLowerCase())}
             placeholder="Search..."
             />
+
             {
                 filtered !== "" ?
                     friends.map(friend => {
@@ -96,9 +101,9 @@ function NewChat() {
                         };
                     })
                 :   friends.length === 0 ?
-                        <p>
+                        <Text>
                             No friends
-                        </p>
+                        </Text>
                     :   friends.map(friend => 
                             <Friend 
                             key={ friend.u_id }
@@ -109,7 +114,7 @@ function NewChat() {
                             />
                         )
             }
-        </div>
+        </PrimBgDiv>
     );
 };
 

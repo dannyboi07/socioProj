@@ -41,8 +41,8 @@ function Register() {
       const imgFileName = document.getElementById("prof-img").value;
       const dotIdx = imgFileName.lastIndexOf(".") + 1;
       const fileExt = imgFileName.substring(dotIdx, imgFileName.length).toLowerCase();
-      if (fileExt !== "jpg" && fileExt !== "jpeg" && fileExt !== "png") {
-        window.alert("Profile image must be either of type .jpg, .jpeg, or .png");
+      if (fileExt !== "jpg" && fileExt !== "jpeg" && fileExt !== "png" && fileExt !== "gif") {
+        dispatch(setStatusNotif("SET_ERR_NOTIF", "Profile image must be of type .jpg, .jpeg, .png, or .gif", 3));
         return;
       };
 
@@ -103,7 +103,7 @@ function Register() {
             id="prof-img" 
             type="file" 
             name="profileimg" 
-            accept='.jpg,.jpeg,.png' 
+            accept='.jpg,.jpeg,.png,.gif' 
             onChange={(e) => handleProfChange(e)}/>
           </label>
 

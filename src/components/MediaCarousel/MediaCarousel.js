@@ -1,9 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import { useSelector } from 'react-redux';
+import { SecBgDiv } from '../../styledComponents/SecBgDiv';
 import "./mediaCarousel.css";
 
 function MediaCarousel({ postId, postImages, fullscreen = false, className, handleFsClick, inMob = false, inPrev = false }) {
 
+    const theme = useSelector(state => { 
+        return {
+            action: state.theme.action,
+            bgPrim: state.theme.bgPrim
+        }
+    });
     const [imgCtnWidth, setImgCtnWidth] = useState(null);
     const [imgPosInx, setImgPosInx] = useState([]);
     const touchStartX = useRef(0);
@@ -41,7 +48,7 @@ function MediaCarousel({ postId, postImages, fullscreen = false, className, hand
         let imgCtn = null;
             imgCtn = fullscreen 
             ? inMob
-                ? document.querySelectorAll(".flscrn-post-ctn__left-ctn")[1] 
+                ? document.querySelector(".flscrn-post-ctn__left-ctn") 
                 : document.querySelector(".flscrn-post-ctn__left-ctn")
             : document.querySelector(".post-images-ctn");
             setImgCtnWidth(imgCtn.offsetWidth);
@@ -74,7 +81,7 @@ function MediaCarousel({ postId, postImages, fullscreen = false, className, hand
     }, [imgPosInx]);
 
     return (
-        <div onClick={ handleFsClick } 
+        <SecBgDiv onClick={ handleFsClick } 
         style={{ height: fullscreen || inPrev ? 
                     null 
                     : imgCtnWidth }} 
@@ -102,8 +109,8 @@ function MediaCarousel({ postId, postImages, fullscreen = false, className, hand
                         <img 
                         key={i} 
                         id={`post-img-${postId}-${i}`} 
-                        style={{ left: imgCtnWidth * imgPosInx[i] }} 
-                        className="post-content-img" src={postImage} 
+                        style={{ left: imgCtnWidth * imgPosInx[i] || 0 }} // I ORed a default of 0 cause on initial render imgCtnW and imgPosInx are not initialized
+                        className="post-content-img" src={postImage}      // and the css left property gets a value of NaN on first render
                         alt={`Post image ${i+1}`}/>) 
             }
 
@@ -123,12 +130,13 @@ function MediaCarousel({ postId, postImages, fullscreen = false, className, hand
                 {
                     postImages.map((img, i) => 
                         <div 
-                        key={i} 
-                        className={`indicator ${imgPosInx[i] === 0 ? "indicator--active": "" }`}/>
+                        key={i}
+                        style={{  border: `1px solid ${theme.action}`, backgroundColor: imgPosInx[i] === 0 ? theme.action : theme.bgPrim }}
+                        className={"indicator"}/>
                     )
                 }
             </div>
-        </div>
+        </SecBgDiv>
     );
 };
 

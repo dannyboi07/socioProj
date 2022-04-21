@@ -8,8 +8,11 @@ import { getPost } from '../../services/contentService';
 import LoadingComp from '../LoadingComp/LoadingComp';
 import Profile from '../Profile/Profile';
 import PostDetails from "../PostDetails/PostDetails";
+import { PrimBgDiv } from "../../styledComponents/PrimBgDiv"
+import { Text } from '../../styledComponents/Text';
 import FailureComp from "../FailureComp/FailureComp";
 import { setFailure } from '../../reducers/failureReducer';
+import { SecBgDiv } from '../../styledComponents/SecBgDiv';
 
 function PostFullscreen({ post, onlyPost }) {
     // const [flscrnPostWidth, setFlscrnPostWidth] = useState(null);
@@ -72,43 +75,9 @@ function PostFullscreen({ post, onlyPost }) {
             </div>
         );
 
-        return (
-            <div className="only-post-ctn">
-                <div className="flscrn-post-ctn flscrn-post-ctn__dsk-ctn">
-                { 
-                    singlePost.p_pics
-                    && <MediaCarousel 
-                        style={{ margin: "0 auto" }} 
-                        className="flscrn-post-ctn__left-ctn" 
-                        postId={ singlePost.p_id } 
-                        postImages={ singlePost.p_pics } 
-                        fullscreen={true}/>
-                }
-
-                    <div className="flscrn-post-ctn__right-ctn">
-                        <Profile name={ singlePost.name } 
-                        username={ singlePost.username } 
-                        profImgSrc={ singlePost.imgloc } 
-                        singlePostUid={ singlePost.u_id } 
-                        friends={ singlePost.friends } />
-
-                        <div className="flscrn-post-ctn__right-ctn__text-ctn">
-                            <p className="flscrn-post-ctn__right-ctn__text-ctn__text">
-                                { singlePost.text }
-                            </p>
-                        </div>
-
-                        <PostDetails 
-                        postUid={ singlePost.u_id } 
-                        postId={ singlePost.p_id } 
-                        likes={ singlePost.likes } 
-                        liked={ singlePost.liked } 
-                        noComments={ singlePost.no_comments } 
-                        inFlscrn={ true }/>
-                    </div>
-                </div>
-
-                <div className="flscrn-post-ctn flscrn-post-ctn__mob-ctn">
+        if (window.screen.width < 769) {
+            return (
+                <PrimBgDiv className="flscrn-post-ctn flscrn-post-ctn__mob-ctn">
                     <Profile name={ singlePost.name } 
                         username={ singlePost.username } 
                         profImgSrc={ singlePost.imgloc } 
@@ -116,9 +85,9 @@ function PostFullscreen({ post, onlyPost }) {
                         friends={ singlePost.friends } />
 
                     <div className="flscrn-post-ctn__right-ctn__text-ctn">
-                        <p className="flscrn-post-ctn__right-ctn__text-ctn__text">
+                        <Text className="flscrn-post-ctn__right-ctn__text-ctn__text">
                             { singlePost.text }
-                        </p>
+                        </Text>
                     </div>
 
                 { 
@@ -142,15 +111,53 @@ function PostFullscreen({ post, onlyPost }) {
                         noComments={ singlePost.no_comments } 
                         inFlscrn={ true }/>
                     </div>
-                </div>
-            </div>
+                </PrimBgDiv>
+            )
+        }
+
+        return (
+            <SecBgDiv className="only-post-ctn">
+                <PrimBgDiv className="flscrn-post-ctn flscrn-post-ctn__dsk-ctn">
+                { 
+                    singlePost.p_pics
+                    && <MediaCarousel 
+                        style={{ margin: "0 auto" }} 
+                        className="flscrn-post-ctn__left-ctn" 
+                        postId={ singlePost.p_id } 
+                        postImages={ singlePost.p_pics } 
+                        fullscreen={true}/>
+                }
+
+                    <div className="flscrn-post-ctn__right-ctn">
+                        <Profile name={ singlePost.name } 
+                        username={ singlePost.username } 
+                        profImgSrc={ singlePost.imgloc } 
+                        singlePostUid={ singlePost.u_id } 
+                        friends={ singlePost.friends } />
+
+                        <div className="flscrn-post-ctn__right-ctn__text-ctn">
+                            <Text className="flscrn-post-ctn__right-ctn__text-ctn__text">
+                                { singlePost.text }
+                            </Text>
+                        </div>
+
+                        <PostDetails 
+                        postUid={ singlePost.u_id } 
+                        postId={ singlePost.p_id } 
+                        likes={ singlePost.likes } 
+                        liked={ singlePost.liked } 
+                        noComments={ singlePost.no_comments } 
+                        inFlscrn={ true }/>
+                    </div>
+                </PrimBgDiv>
+            </SecBgDiv>
         )
     }
 
     if (!post) {
         return (
 
-            <div className="flscrn-post-ctn">
+            <PrimBgDiv className="flscrn-post-ctn">
                 <div className="flscrn-post-ctn__left-ctn">
                     <LoadingComp />
                 </div>
@@ -162,12 +169,12 @@ function PostFullscreen({ post, onlyPost }) {
                     </div>
                 </div>
                 
-            </div>
+            </PrimBgDiv>
         )
     };
 
     return (
-            <div className="flscrn-post-ctn">
+            <PrimBgDiv className="flscrn-post-ctn">
                 { 
                     post.p_pics 
                     && <MediaCarousel 
@@ -186,9 +193,9 @@ function PostFullscreen({ post, onlyPost }) {
                     friends={ post.friends } />
 
                     <div className="flscrn-post-ctn__right-ctn__text-ctn">
-                        <p className="flscrn-post-ctn__right-ctn__text-ctn__text">
+                        <Text className="flscrn-post-ctn__right-ctn__text-ctn__text">
                             { post.text }
-                        </p>
+                        </Text>
                     </div>
 
                     <PostDetails 
@@ -200,7 +207,7 @@ function PostFullscreen({ post, onlyPost }) {
                     inFlscrn={ true }/>
                 </div>
                 
-            </div>
+            </PrimBgDiv>
     )
 }
 
