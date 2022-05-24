@@ -13,21 +13,21 @@ import notificationReducer from "./reducers/notificationReducer";
 import messagingReducer from "./reducers/messagingReducer";
 import themeReducer from "./reducers/themeReducer";
 
-const reducer = combineReducers({ 
-  user: userReducer,
-  users: usersReducer,
-  postblog: postblogReducer,
-  fullscreenData: fullScreenReducer,
-  failure: failureReducer,
-  statusNotif: statusNotifReducer,
-  notifs: notificationReducer,
-  messaging: messagingReducer,
-  theme: themeReducer
+const reducer = combineReducers({
+	user: userReducer,
+	users: usersReducer,
+	postblog: postblogReducer,
+	fullscreenData: fullScreenReducer,
+	failure: failureReducer,
+	statusNotif: statusNotifReducer,
+	notifs: notificationReducer,
+	messaging: messagingReducer,
+	theme: themeReducer
 });
 
 const store = createStore(
-  reducer, 
-  composeWithDevTools(applyMiddleware(thunk))
+	reducer,
+	composeWithDevTools(applyMiddleware(thunk))
 );
 // store.subscribe(() => console.log(store.getState()));
 

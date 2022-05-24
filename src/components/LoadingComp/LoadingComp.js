@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
 import styled from "styled-components";
 import "./loadingcomp.css";
 
@@ -11,20 +10,20 @@ const StyledLoaderDiv = styled.span`
 
 function LoadingComp({ mini }) {
 
-    return (
-        // <div className={ `loader-ctn ${mini ? "smaller-ctn" : ""}` }>
-        //     <div className="loader">
-        //         <span></span>
-        //         <span></span>
-        //         <span></span>
-        //         <span></span>
-        //     </div>
-        // </div>
-        <div
-        className={ `loader-ctn ${mini ? "smaller-ctn" : ""}` }>
-            <StyledLoaderDiv className="loader"></StyledLoaderDiv>
-        </div>
-    )
+	return (
+		<div
+			className={ `loader-ctn ${mini ? "smaller-ctn" : ""}` }>
+			<StyledLoaderDiv className="loader"></StyledLoaderDiv>
+		</div>
+	);
 }
 
 export default LoadingComp;
+// <div className={ `loader-ctn ${mini ? "smaller-ctn" : ""}` }>
+//     <div className="loader">
+//         <span></span>
+//         <span></span>
+//         <span></span>
+//         <span></span>
+//     </div>
+// </div>

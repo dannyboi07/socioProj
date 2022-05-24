@@ -33,13 +33,13 @@ const StyledNameLink = styled(Link)`
 `;
 
 function NameLink({ to, children }) {
-    return (
-        <StyledNameLink to={ to }>
-            {
-                children
-            }
-        </StyledNameLink>
-    );
-};
+	return (
+		<StyledNameLink to={ to }>
+			{
+				children
+			}
+		</StyledNameLink>
+	);
+}
 
 export default NameLink;

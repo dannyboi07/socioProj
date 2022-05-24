@@ -8,14 +8,14 @@ const darkBgLight = "#0F1A20";
 const darkBgDark = "#1F2730";
 const darkCol = "#FFFFFF";
 
-export { 
-    lightAction, 
-    lightBgLight,
-    lightBgDark,
-    lightCol,
+export {
+	lightAction,
+	lightBgLight,
+	lightBgDark,
+	lightCol,
 
-    darkAction,
-    darkBgLight,
-    darkBgDark,
-    darkCol
-};   
+	darkAction,
+	darkBgLight,
+	darkBgDark,
+	darkCol
+};

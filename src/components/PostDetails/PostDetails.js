@@ -1,260 +1,260 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { likePostRdx, unLikePostRdx } from '../../reducers/postblogReducer';
-import { getPostComms, getPostLikers, postComm } from '../../services/contentService';
-import ProfileList from '../ProfileList/ProfileList';
+import React, { useState, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { likePostRdx, unLikePostRdx } from "../../reducers/postblogReducer";
+import { getPostComms, getPostLikers, postComm } from "../../services/contentService";
+import ProfileList from "../ProfileList/ProfileList";
 import CommentsList from "../CommentsList/CommentsList";
-import { Text } from '../../styledComponents/Text';
+import { Text } from "../../styledComponents/Text";
 import "./postdetails.css";
-import { setStatusNotif } from '../../reducers/statusNotifReducer';
-import { TextActionCol } from '../../styledComponents/TextActionCol';
-import { TextArea } from '../../styledComponents/CommInput';
+import { setStatusNotif } from "../../reducers/statusNotifReducer";
+import { TextActionCol } from "../../styledComponents/TextActionCol";
+import { TextArea } from "../../styledComponents/CommInput";
 
 function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
-  const dispatch = useDispatch();
-  const userData = useSelector(state => state.user);
+	const dispatch = useDispatch();
+	const userData = useSelector(state => state.user);
 
-  const [likesCount, setLikesCount] = useState(parseInt(likes));
-  const [likestate, setLikestate] = useState({ display: "none" });
-  const [likeResults, setLikeResults] = useState(null);
-  const [ulikedOrNot, setuLikedOrNot] = useState(liked);
-  const arwBtn = useRef(null);
-  const profListRef = useRef(null);
+	const [likesCount, setLikesCount] = useState(parseInt(likes));
+	const [likestate, setLikestate] = useState({ display: "none" });
+	const [likeResults, setLikeResults] = useState(null);
+	const [ulikedOrNot, setuLikedOrNot] = useState(liked);
+	const arwBtn = useRef(null);
+	const profListRef = useRef(null);
 
-  const [comCount, setComCount] = useState(parseInt(noComments));
-  const [comsResults, setComsResults] = useState(null);
-  const [comsState, setComsState] = useState({ display: "none" });
-  const [comInputState, setComInputState] = useState("");
-  const commListRef = useRef(null);
-  const comInputRef = useRef(null);
-  const comSubRef = useRef(null);
-  const cmtArwBtn = useRef(null);
+	const [comCount, setComCount] = useState(parseInt(noComments));
+	const [comsResults, setComsResults] = useState(null);
+	const [comsState, setComsState] = useState({ display: "none" });
+	const [comInputState, setComInputState] = useState("");
+	const commListRef = useRef(null);
+	const comInputRef = useRef(null);
+	const comSubRef = useRef(null);
+	const cmtArwBtn = useRef(null);
 
-  // console.log(comCount, noComments);
+	// console.log(comCount, noComments);
 
-  function OnInput() {
-    this.style.height = "2.5em";
-    this.style.height = this.scrollHeight + "px";
-  };
+	function OnInput() {
+		this.style.height = "2.5em";
+		this.style.height = this.scrollHeight + "px";
+	}
 
-  useEffect(() => {
+	useEffect(() => {
 
-    comInputRef.current.style = "height: 2.35em; overflow-y: hidden;";
-    comInputRef.current.addEventListener("input", OnInput);
-    comInputRef.current.addEventListener("keyup", handleEntClick);
+		comInputRef.current.style = "height: 2.35em; overflow-y: hidden;";
+		comInputRef.current.addEventListener("input", OnInput);
+		comInputRef.current.addEventListener("keyup", handleEntClick);
 
-    // return () => {
-    //   console.log(comInputRef.current);
-    //   comInputRef.current.removeEventListener("input", OnInput);
-    //   comInputRef.current.removeEventListener("keyup", handleEntClick);
-    // };
-  }, []);
+		// return () => {
+		//   console.log(comInputRef.current);
+		//   comInputRef.current.removeEventListener("input", OnInput);
+		//   comInputRef.current.removeEventListener("keyup", handleEntClick);
+		// };
+	}, []);
 
-  let timer = null;
-  
-  function handleEntClick(e) {
-    e.preventDefault();
-    if (e.key === "Enter" && comInputState !== "") {
-      comSubRef.current.click();
-    }
-  }
+	let timer = null;
 
-  function showLikes() {
-    if (!likeResults) getLikes();
+	function handleEntClick(e) {
+		e.preventDefault();
+		if (e.key === "Enter" && comInputState !== "") {
+			comSubRef.current.click();
+		}
+	}
 
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(()=> {
-      setLikestate({ display: "block" });
+	function showLikes() {
+		if (!likeResults) getLikes();
 
-      setTimeout(() => {
-        profListRef.current.classList.add("show-ctn");
-        arwBtn.current.classList.add("toggle-btn--active");
-      }, 15);
-    }, 0);
-  };
-  
-  function hideLikes() {
-    if (timer) clearTimeout(timer);
+		if (timer) clearTimeout(timer);
+		timer = setTimeout(() => {
+			setLikestate({ display: "block" });
 
-    profListRef.current.classList.remove("show-ctn");
-    arwBtn.current.classList.remove("toggle-btn--active");
+			setTimeout(() => {
+				profListRef.current.classList.add("show-ctn");
+				arwBtn.current.classList.add("toggle-btn--active");
+			}, 15);
+		}, 0);
+	}
 
-    timer = setTimeout(() => {
-      setLikestate({ display: "none" });
-    }, 150);
-  };
+	function hideLikes() {
+		if (timer) clearTimeout(timer);
 
-  async function getLikes() {
-    setLikeResults(await getPostLikers(postId));
-  };
+		profListRef.current.classList.remove("show-ctn");
+		arwBtn.current.classList.remove("toggle-btn--active");
 
-  function showLikesAsBlock() {
-    arwBtn.current.classList.toggle("toggle-btn--active");
-    
-    likestate.display === "none" 
-    ? showLikes()
-    : hideLikes();
-  };
+		timer = setTimeout(() => {
+			setLikestate({ display: "none" });
+		}, 150);
+	}
 
-  function handlePostLikeClick() {
-    if (userData.uId === postUid) {
-      dispatch(setStatusNotif("SET_ERR_NOTIF", "Cannot like your own post", 2));
-      return;
-    };
-    if (ulikedOrNot) {
-      dispatch(unLikePostRdx(postId, userData.token));
-      setuLikedOrNot(false);
-      setLikesCount(likesCount - 1);
-      showLikes();
-    } else {
-      dispatch(likePostRdx(postId, userData.token));
-      setuLikedOrNot(true);
-      setLikesCount(likesCount + 1);
-      showLikes();
-    };
-  };
+	async function getLikes() {
+		setLikeResults(await getPostLikers(postId));
+	}
 
-  let commTimer = null;
+	function showLikesAsBlock() {
+		arwBtn.current.classList.toggle("toggle-btn--active");
 
-  async function getComms() {
-    setComsResults(await getPostComms(postId));
-  };
+		likestate.display === "none"
+			? showLikes()
+			: hideLikes();
+	}
 
-  function showComms() {
-    if (!comsResults) getComms();
+	function handlePostLikeClick() {
+		if (userData.uId === postUid) {
+			dispatch(setStatusNotif("SET_ERR_NOTIF", "Cannot like your own post", 2));
+			return;
+		}
+		if (ulikedOrNot) {
+			dispatch(unLikePostRdx(postId, userData.token));
+			setuLikedOrNot(false);
+			setLikesCount(likesCount - 1);
+			showLikes();
+		} else {
+			dispatch(likePostRdx(postId, userData.token));
+			setuLikedOrNot(true);
+			setLikesCount(likesCount + 1);
+			showLikes();
+		}
+	}
 
-    if (commTimer) clearTimeout(commTimer);
-    commTimer = setTimeout(() => {
-      setComsState({ display: "block" });
+	let commTimer = null;
 
-      setTimeout(() => {
-        commListRef.current.classList.add("show-comm-ctn");
-        cmtArwBtn.current.classList.add("toggle-btn--active");
-      }, 15);
-    }, 0);
-  }
+	async function getComms() {
+		setComsResults(await getPostComms(postId));
+	}
 
-  function hideComms() {
-    if (commTimer) clearTimeout(commTimer);
+	function showComms() {
+		if (!comsResults) getComms();
 
-    commListRef.current.classList.remove("show-comm-ctn");
-    cmtArwBtn.current.classList.remove("toggle-btn--active");
+		if (commTimer) clearTimeout(commTimer);
+		commTimer = setTimeout(() => {
+			setComsState({ display: "block" });
 
-    commTimer = setTimeout(() => {
-      setComsState({ display: "none" });
-    }, 200);
-  };
+			setTimeout(() => {
+				commListRef.current.classList.add("show-comm-ctn");
+				cmtArwBtn.current.classList.add("toggle-btn--active");
+			}, 15);
+		}, 0);
+	}
 
-  function showCmtsAsBlock() {
-    cmtArwBtn.current.classList.toggle("toggle-btn--active");
+	function hideComms() {
+		if (commTimer) clearTimeout(commTimer);
 
-    comsState.display === "none"
-    ? showComms()
-    : hideComms()
-  };
+		commListRef.current.classList.remove("show-comm-ctn");
+		cmtArwBtn.current.classList.remove("toggle-btn--active");
 
-  async function postComment() {
-    try {
-      const newComResp = await postComm(postId, comInputState, userData.token);
-      setComInputState(null);
-      comInputRef.current.value = null;
-      setComCount(comCount + 1);
+		commTimer = setTimeout(() => {
+			setComsState({ display: "none" });
+		}, 200);
+	}
 
-      if (comsResults) {
-        setComsResults([ ...comsResults, newComResp])
-      }
-      else getComms();
-      
-    } catch(err) {
-      console.error("Error posting comment");
-    }
-  };
+	function showCmtsAsBlock() {
+		cmtArwBtn.current.classList.toggle("toggle-btn--active");
 
-  return (
-    <div className={`post-details-ctn ${inFlscrn ? "pst-det-ctn--mod" : "" }`}>
-      <div className="details-ctn">
-        <div className="like-btn-ctn">
-          <button className="like-btn"
-            onClick={handlePostLikeClick}
-            onTouchStart={showLikes}
-            onTouchEnd={hideLikes}
-            onMouseOver={showLikes} 
-            onMouseOut={hideLikes}>
-            <Text>
-              { likesCount }
-            </Text>
+		comsState.display === "none"
+			? showComms()
+			: hideComms();
+	}
 
-            <img className={ ulikedOrNot ? "" : "like-icon" } src={ ulikedOrNot ? "/liked-svg.gif" : "/heart.svg" } alt="like-icon"/>
-          </button>
+	async function postComment() {
+		try {
+			const newComResp = await postComm(postId, comInputState, userData.token);
+			setComInputState(null);
+			comInputRef.current.value = null;
+			setComCount(comCount + 1);
 
-          <ProfileList 
-          className="likes-ctn" 
-          postId={postId} 
-          likestate={likestate} 
-          likeResults={likeResults} 
-          profListRef={profListRef}/>
+			if (comsResults) {
+				setComsResults([ ...comsResults, newComResp]);
+			}
+			else getComms();
 
-          <button 
-          id={`tglBtn${postId}`} 
-          className="toggle-btn" 
-          onClick={showLikesAsBlock} 
-          ref={arwBtn}>
-            <img src="/icon-arrow-down.svg" alt="toggle-likes"/>
-          </button>
+		} catch(err) {
+			console.error("Error posting comment");
+		}
+	}
 
-        </div>
+	return (
+		<div className={`post-details-ctn ${inFlscrn ? "pst-det-ctn--mod" : "" }`}>
+			<div className="details-ctn">
+				<div className="like-btn-ctn">
+					<button className="like-btn"
+						onClick={handlePostLikeClick}
+						onTouchStart={showLikes}
+						onTouchEnd={hideLikes}
+						onMouseOver={showLikes}
+						onMouseOut={hideLikes}>
+						<Text>
+							{ likesCount }
+						</Text>
 
-        <div className="comments-btn-ctn">
-          <button className="comments-btn"
-          onTouchStart={showComms}
-          onTouchEnd={hideComms}
-          onMouseOver={showComms}
-          onMouseOut={hideComms}>
+						<img className={ ulikedOrNot ? "" : "like-icon" } src={ ulikedOrNot ? "/liked-svg.gif" : "/heart.svg" } alt="like-icon"/>
+					</button>
 
-            <Text>
+					<ProfileList
+						className="likes-ctn"
+						postId={postId}
+						likestate={likestate}
+						likeResults={likeResults}
+						profListRef={profListRef}/>
+
+					<button
+						id={`tglBtn${postId}`}
+						className="toggle-btn"
+						onClick={showLikesAsBlock}
+						ref={arwBtn}>
+						<img src="/icon-arrow-down.svg" alt="toggle-likes"/>
+					</button>
+
+				</div>
+
+				<div className="comments-btn-ctn">
+					<button className="comments-btn"
+						onTouchStart={showComms}
+						onTouchEnd={hideComms}
+						onMouseOver={showComms}
+						onMouseOut={hideComms}>
+
+						<Text>
               Comments: { comCount }
-            </Text> 
-            
-          </button>
+						</Text>
 
-          <button 
-          className="toggle-btn" 
-          onClick={ showCmtsAsBlock } 
-          ref={ cmtArwBtn }>
-            <img src="/icon-arrow-down.svg" alt="toggle-cmts"/>
-          </button>
+					</button>
 
-        </div>
+					<button
+						className="toggle-btn"
+						onClick={ showCmtsAsBlock }
+						ref={ cmtArwBtn }>
+						<img src="/icon-arrow-down.svg" alt="toggle-cmts"/>
+					</button>
 
-        <CommentsList 
-        postId={ postId } 
-        comsState={ comsState } 
-        commentsData={ comsResults } 
-        commListRef={ commListRef } 
-        inFlscrn={ inFlscrn }/>
-      </div>
+				</div>
 
-      <div className="input-cmt-ctn">
-        <TextArea
-        value={ comInputState }
-        onChange={e => setComInputState(e.target.value)}
-        placeholder='Comment...'
-        ref={comInputRef}/>
+				<CommentsList
+					postId={ postId }
+					comsState={ comsState }
+					commentsData={ comsResults }
+					commListRef={ commListRef }
+					inFlscrn={ inFlscrn }/>
+			</div>
 
-        <button 
-        className={ comInputState === "" ? "post-cmt-btn-dis" : "" } 
-        onClick={ postComment } disabled={ comInputState === "" ? true : false } 
-        ref={ comSubRef }>
+			<div className="input-cmt-ctn">
+				<TextArea
+					value={ comInputState }
+					onChange={e => setComInputState(e.target.value)}
+					placeholder='Comment...'
+					ref={comInputRef}/>
 
-          <TextActionCol>
+				<button
+					className={ comInputState === "" ? "post-cmt-btn-dis" : "" }
+					onClick={ postComment } disabled={ comInputState === "" ? true : false }
+					ref={ comSubRef }>
+
+					<TextActionCol>
             Post
-          </TextActionCol>
+					</TextActionCol>
 
-        </button>
+				</button>
 
-      </div>
-    </div>
-  );
+			</div>
+		</div>
+	);
 }
 
 export default PostDetails;

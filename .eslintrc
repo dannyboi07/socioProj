@@ -1,4 +1,4 @@
-module.export = {
+{
     "env": {
         "browser": true,
         "es6": true,
@@ -9,18 +9,18 @@ module.export = {
         "plugin:react/recommended"
     ],
     "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module",
+        }
     },
     "plugins": [
         "react", "jest"
     ],
     "rules": {
         "indent": [
-            "error", 4
+            "error", "tab"
         ],
         "linebreak-style": [
             "error", "unix"
@@ -29,7 +29,7 @@ module.export = {
             "error", "double"
         ],
         "semi": [
-            "error", "never"
+            "error", "always"
         ],
         "eqeqeq": "error",
         "no-trailing-spaces": "error",
@@ -41,11 +41,12 @@ module.export = {
         ],
         "no-console": 0,
         "react/prop-types": 0,
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "no-mixed-spaces-and-tabs": 0
     },
     "settings": {
         "react": {
             "version": "detect"
-        },
-    },
-};
+        }
+    }
+}

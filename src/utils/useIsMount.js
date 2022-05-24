@@ -1,12 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from "react";
 
 function useIsMount() {
-    const isFirstRender = useRef(true);
+	const isFirstRender = useRef(true);
 
-    useEffect(() => {
-      isFirstRender.current = false;
-    }, []);
-    return isFirstRender.current;
+	useEffect(() => {
+		isFirstRender.current = false;
+	}, []);
+	return isFirstRender.current;
 }
 
 export default useIsMount;

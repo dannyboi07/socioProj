@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
 const StyledLogo = styled.h3`
@@ -11,11 +11,11 @@ const StyledLogo = styled.h3`
 `;
 
 function Logo() {
-    return (
-        <StyledLogo>
+	return (
+		<StyledLogo>
             Socio
-        </StyledLogo>
-    )   
+		</StyledLogo>
+	);
 }
 
 export default Logo;
