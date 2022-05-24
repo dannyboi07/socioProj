@@ -1,6 +1,6 @@
 import axios from "axios";
-//const baseUrl = "http://localhost:3500/api/search";
-const baseUrl = "https://secure-meadow-40264.herokuapp.com/api/search";
+import url from "./baseUrl";
+const baseUrl = `${url}/api/search`;
 
 async function getSearch(searchParam) {
 	try {

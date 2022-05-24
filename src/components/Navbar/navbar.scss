@@ -1,445 +1,462 @@
-.nav-ctn-dsktp, .nav-ctn-mob {
-    position: sticky;
-    top: 0;
+.nav-ctn-dsktp,
+.nav-ctn-mob {
+	position: sticky;
+	top: 0;
 
-    width: 100%;
-    min-width: 860px;
-    height: 75px;
-    padding: 0 7em 0 7em;
+	width: 100%;
+	min-width: 860px;
+	height: 75px;
+	padding: 0 7em 0 7em;
 
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
-    z-index: 10;
+	z-index: 10;
 }
 
 .nav-ctn-dsktp {
-    justify-content: space-evenly;
+	justify-content: space-evenly;
 
-    overflow: visible;
+	overflow: visible;
 
-    @media only screen and (max-width: 768px) {
-        display: none;
-    }
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
 }
 
 .nav-ctn-mob {
-    padding: 0 0.75em;
-    min-width: initial;
+	padding: 0 0.75em;
+	min-width: initial;
 
-    justify-content: flex-start;
-    display: none;
+	justify-content: flex-start;
+	display: none;
 
-    & > .logo {
-        min-width: initial;
-        width: fit-content;
-        margin: 0 0.5em;
-    }
+	& > .logo {
+		min-width: initial;
+		width: fit-content;
+		margin: 0 0.5em;
+	}
 
-    & > .search-ctn {
-        width: 70%;
-    }
+	& > .search-ctn {
+		width: 70%;
+	}
 
-    @media only screen and (max-width: 768px) {
-        display: flex;
-    }
+	@media only screen and (max-width: 768px) {
+		display: flex;
+	}
 }
 
 .logo {
-    & > h3 {
-        font-size: 2.5rem;
-    }
+	& > h3 {
+		font-size: 2.5rem;
+	}
 
-    // width: clamp(200px, 20vw, 300px);
-    min-width: 200px;
-    font-weight: 700;
-    font-family: "Exo";
-    letter-spacing: 1px;
+	// width: clamp(200px, 20vw, 300px);
+	min-width: 200px;
+	font-weight: 700;
+	font-family: "Exo";
+	letter-spacing: 1px;
 
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 
-    @media only screen and (max-width: 768px) {
-        font-size: 5rem;
-        min-width: none;
-    }
+	@media only screen and (max-width: 768px) {
+		font-size: 5rem;
+		min-width: none;
+	}
 }
 
 .search-ctn {
-    display: block;
-    margin: 0 0.5em;
-    width: 40%;
-    min-width: 300px;
-    max-width: 400px;
-    height: 2em;
+	display: block;
+	margin: 0 0.5em;
+	width: 40%;
+	min-width: 300px;
+	max-width: 400px;
+	height: 2em;
 
-    &__search-res-ctn {
-        display: block;
-        border-radius: 0 0 0.25em 0.25em;
-        background-color: white;
-        height: 250px;
-        overflow-y: auto;
+	&__search-res-ctn {
+		display: block;
+		border-radius: 0 0 0.25em 0.25em;
+		background-color: white;
+		height: 250px;
+		overflow-y: auto;
 
-        &--no-res {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            font-size: 0.95rem;
-            color: #00000070;
-        }
+		&--no-res {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			font-size: 0.95rem;
+			color: #00000070;
+		}
 
-        &--hide-res {
-            display: none;
-        }
+		&--hide-res {
+			display: none;
+		}
+	}
+
+    @media only screen and (max-width: 768px) {
+        min-width: 200px;
     }
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .reg-log-btn-ctn {
-    position: relative;
-    width: clamp(200px, 20vw, 300px);
-    height: 57.5%;
+	position: relative;
+	width: clamp(200px, 20vw, 300px);
+	height: 57.5%;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 
-    & > a:first-child { 
-        height: 2em;
+	& > a:first-child {
+		height: 2em;
 
-        // & > img {
-        //     width: 2em;
-        //     height: 2em;
-        // }
-    }
+		// & > img {
+		//     width: 2em;
+		//     height: 2em;
+		// }
+	}
 
-    &--not-logged { // Was .reg-log-btn-ctn--lgout
-        width: clamp(100px, 15vw, 150px);
-        justify-content: space-between;
-    }
+	&--not-logged {
+		// Was .reg-log-btn-ctn--lgout
+		width: clamp(100px, 15vw, 150px);
+		justify-content: space-between;
 
-    // Only want this to apply on the default class when
-    // the navbar is a "user-logged-in" specific navbar
-    // which is when it doesn't possess the BEM modifier of 
-    // --not-logged
-    &:not(&--not-logged) {
+		& > a {
+			width: 2em;
+			height: 2em;
+			margin-left: 5px;
 
-        & > * {
-            // margin: 0 auto;
-            align-self: center;
+			& > img {
+				display: block;
+				width: 2em;
+				height: 2em;
+			}
+		}
+	}
 
-            // Apply on every icon item within the logged in users navbar
-            // except the last settings gear
-            &:not(.reg-log-btn-ctn__settings-toggle) {
-                & > img {            
-                    width: 2em;             
-                    height: 2em;
-                }
-            }
+	// Only want this to apply on the default class when
+	// the navbar is a "user-logged-in" specific navbar
+	// which is when it doesn't possess the BEM modifier of
+	// --not-logged
+	&:not(&--not-logged) {
+		& > * {
+			// margin: 0 auto;
+			align-self: center;
 
-            &:not(.reg-log-btn-ctn__settings-ctn):not(.notifs-ctn):not(.notifs-mob-ctn) {
-                
-                transition: transform 0.25s, margin 0.25s;
+			// Apply on every icon item within the logged in users navbar
+			// except the last settings gear
+			&:not(.reg-log-btn-ctn__settings-toggle) {
+				& > img {
+					width: 2em;
+					height: 2em;
+				}
+			}
 
-                &:not(.notifs-ctn):not(.reg-log-btn-ctn__settings-ctn):not(.reg-log-btn-ctn__settings-toggle):hover {
-                    
-                    &:not(a) {
-                        cursor: pointer;
-                    }
-                    transform: scale(1.2);
-                    margin: 0 0.5em;
-                }
-            }
-        }
-    }
+			&:not(.reg-log-btn-ctn__settings-ctn):not(.notifs-ctn):not(.notifs-mob-ctn) {
+				transition: transform 0.25s, margin 0.25s;
 
-    &__create-icon {
-        width: 2.15em;
-        height: 2.15em;
-        // background: url("/public/icon-create.svg") center no-repeat;
-        // background-size: contain;
+				&:not(.notifs-ctn):not(.reg-log-btn-ctn__settings-ctn):not(.reg-log-btn-ctn__settings-toggle):hover {
+					&:not(a) {
+						cursor: pointer;
+					}
+					transform: scale(1.2);
+					margin: 0 0.5em;
+				}
+			}
+		}
+	}
 
-        // &:hover {
-        //     //cursor: pointer;
-        //     // background: url("/public/icon-create.gif") center no-repeat;
-        //     // background-size: contain;
-        // }
-    }
+	&__create-icon {
+		width: 2.15em;
+		height: 2.15em;
+		// background: url("/public/icon-create.svg") center no-repeat;
+		// background-size: contain;
 
-    &__dm-icon {
-        width: 2.25em !important;
-        height: 2.25em !important;
-        margin-top: 4px;
+		// &:hover {
+		//     //cursor: pointer;
+		//     // background: url("/public/icon-create.gif") center no-repeat;
+		//     // background-size: contain;
+		// }
+	}
 
-        // background: url("/public/dm.svg") center no-repeat;
-        // background-size: cover;
+	&__dm-icon {
+		width: 2.25em !important;
+		height: 2.25em !important;
+		margin-top: 4px;
 
-        // &:hover {
-        //     background: url("/public/dm.gif") center no-repeat;
-        //     background-size: cover;
-        // }
-    }
+		// background: url("/public/dm.svg") center no-repeat;
+		// background-size: cover;
 
-    &__settings-toggle {
-        position: relative;
+		// &:hover {
+		//     background: url("/public/dm.gif") center no-repeat;
+		//     background-size: cover;
+		// }
+	}
 
-        width: 2.5em;
-        height: 2.5em;
+	&__settings-toggle {
+		position: relative;
 
-        & > img {
-            width: 100%; /* Fighting for specificity with reg-log-btn-ctn--logout img selector */
-            height: 100%;
-            transition: transform 0.5s;
-        }
+		width: 2.5em;
+		height: 2.5em;
 
-        // When not rotated and hovered, apply these styles on the settings gear
-        &:hover {
-            cursor: pointer;
-            margin: 0 0.5em;
-            transform: scale(1.2);
-        }
+		& > img {
+			width: 100%; /* Fighting for specificity with reg-log-btn-ctn--logout img selector */
+			height: 100%;
+			transition: transform 0.5s;
+		}
 
-        &--rotate {
-            transform: rotateZ(90deg); // Sticking the rotate on it when settings are shown
+		// When not rotated and hovered, apply these styles on the settings gear
+		&:hover {
+			cursor: pointer;
+			margin: 0 0.5em;
+			transform: scale(1.2);
+		}
 
-            // Keeping the rotation (cause if not included it will be removed) 
-            // AND increasing scale when hovered
-            &:hover {
-                transform: rotateZ(90deg) scale(1.2); 
-            }
-        }
-    }
+		&--rotate {
+			transform: rotateZ(
+				90deg
+			); // Sticking the rotate on it when settings are shown
 
-    &__settings-ctn {
-        position: absolute;
-        right: 5px;
-        width: 200px;
+			// Keeping the rotation (cause if not included it will be removed)
+			// AND increasing scale when hovered
+			&:hover {
+				transform: rotateZ(90deg) scale(1.2);
+			}
+		}
+	}
 
-        border-radius: 0.25em;
-        
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	&__settings-ctn {
+		position: absolute;
+		right: 5px;
+		width: 200px;
 
-        transform: scale(0);
-        transition: transform 0.25s;
+		border-radius: 0.25em;
 
-        &--dsktp {
-            top: 50px;
-            transform-origin: 90% 0%;
-        }
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
-        &--mob {
-            bottom: 60px;
-            transform-origin: 90% 90%;
-        }
+		transform: scale(0);
+		transition: transform 0.25s;
 
-        &--show {
-            transform: scale(1);
-        }
-    }
+		&--dsktp {
+			top: 50px;
+			transform-origin: 90% 0%;
+		}
 
-    &__setting-ctn {
-        height: 100%;
-        padding: 0.75em 0;
+		&--mob {
+			bottom: 60px;
+			transform-origin: 90% 90%;
+		}
 
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+		&--show {
+			transform: scale(1);
+		}
+	}
 
-        &:not(:first-child) {
-            border-top: 1px solid lightgray;
-        }
+	&__setting-ctn {
+		height: 100%;
+		padding: 0.75em 0;
 
-        & p {
-            font-size: 1rem;
-        }
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
 
-        & > button {
-            font-size: 0.9rem;
-            padding: 0.5em 0.75em;
+		&:not(:first-child) {
+			border-top: 1px solid lightgray;
+		}
 
-            border-radius: 0.25em;
-        }
+		& p {
+			font-size: 1rem;
+		}
 
-        &--logout-link {
-            & > img {
-                width: 2em;
-                height: 2em;
-                
-                // background: url("/public/icon-sign-out.svg") center no-repeat;
-                // background-size: contain;
-            }
-    
-            // &:hover > div {
-            //     background: url("/public/icon-sign-out.gif") center no-repeat;
-            //     background-size: contain;
-            // }
-        }
-    }
+		& > button {
+			font-size: 0.9rem;
+			padding: 0.5em 0.75em;
 
-    &__reg-btn {
-        width: 2em;
-        height: 2em;
-        margin-left: 5px;
+			border-radius: 0.25em;
+		}
 
-        & > img {
-            display: block;
-            width: 2em;
-            height: 2em;
-        }
-    }
+		&--logout-link {
+			& > img {
+				width: 2em;
+				height: 2em;
 
-    &__log-btn {
-        & > div {
-            width: 2em;
-            height: 2em;
-    
-            background: url("/public/login.svg") no-repeat;
-            background-size: contain;
-        }
+				// background: url("/public/icon-sign-out.svg") center no-repeat;
+				// background-size: contain;
+			}
 
-        &:hover > div {
-            background: url("/public/login.gif") no-repeat;
-            background-size: contain;
-        }
-    }
+			// &:hover > div {
+			//     background: url("/public/icon-sign-out.gif") center no-repeat;
+			//     background-size: contain;
+			// }
+		}
+	}
 
-    @media only screen and (max-width: 768px) {
-        justify-content: space-around;
-    }
+	// &__reg-btn, &__log-btn {
+	//     width: 2em;
+	//     height: 2em;
+	//     margin-left: 5px;
+
+	//     & > img {
+	//         display: block;
+	//         width: 2em;
+	//         height: 2em;
+	//     }
+	// }
+
+	// &__log-btn, &__reg-btn {
+	//     & > div {
+	//         width: 2em;
+	//         height: 2em;
+
+	//         background: url("/public/login.svg") no-repeat;
+	//         background-size: contain;
+	//     }
+
+	//     &:hover > div {
+	//         background: url("/public/login.gif") no-repeat;
+	//         background-size: contain;
+	//     }
+	// }
+
+	@media only screen and (max-width: 768px) {
+		justify-content: space-around;
+	}
 }
 
 .noti-icon {
-    position: relative;
-    width: 2em;
-    height: 2em;
-    // background: url("/public/notification.svg") center no-repeat;
-    // background-size: contain;
+	position: relative;
+	width: 2em;
+	height: 2em;
+	// background: url("/public/notification.svg") center no-repeat;
+	// background-size: contain;
 
-    // &:hover {
-    //     //cursor: pointer;
-    //     background: url("/public/notification.gif") center no-repeat;
-    //     background-size: contain;
-    // }
+	// &:hover {
+	//     //cursor: pointer;
+	//     background: url("/public/notification.gif") center no-repeat;
+	//     background-size: contain;
+	// }
 
-    &__no-of-notifs {
-        position: absolute;
-        font-size: 1rem;
-        top: -0.5em;
-        right: -0.25em;
+	&__no-of-notifs {
+		position: absolute;
+		font-size: 1rem;
+		top: -0.5em;
+		right: -0.25em;
 
-        min-width: 1.15em;
-        min-height: 1em;
-        padding: 0 0.25em;
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        background-color: orange;
-        border-radius: 50%;
-    }
+		min-width: 1.15em;
+		min-height: 1em;
+		padding: 0 0.25em;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		background-color: orange;
+		border-radius: 50%;
+	}
 }
 
 .notifs-ctn {
-    position: absolute;
-    top: 50px;
-    right: 57.5%;
+	position: absolute;
+	top: 50px;
+	right: 57.5%;
 
-    width: 400px;
-    height: 300px;
+	width: 400px;
+	height: 300px;
 
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    border-radius: 0.25em;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    
-    overflow-y: auto;
+	border-radius: 0.25em;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
-    transform: scale(0);
-    transform-origin: 95% 0%;
-    transition: transform 0.25s, opacity 0.25s;
+	overflow-y: auto;
 
-    &--active {
-        transform: scale(1) !important;
-    }
+	transform: scale(0);
+	transform-origin: 95% 0%;
+	transition: transform 0.25s, opacity 0.25s;
 
-    &--no-notifs {
-        font-size: 0.925rem;
-        color: gray;
+	&--active {
+		transform: scale(1) !important;
+	}
 
-        justify-content: center;
-        align-items: center;
-    }
+	&--no-notifs {
+		font-size: 0.925rem;
+		color: gray;
 
-    &__mrk-all-rd-btn {
-        font-size: 0.9rem;
-        margin: 0.25em 0.5em 0 0;
-        padding: 0;
+		justify-content: center;
+		align-items: center;
+	}
 
-        align-self: flex-end;
-        background-color: white;
-        color: gray;
+	&__mrk-all-rd-btn {
+		font-size: 0.9rem;
+		margin: 0.25em 0.5em 0 0;
+		padding: 0;
 
-        transition: color 0.25s;
+		align-self: flex-end;
+		background-color: white;
+		color: gray;
 
-        &:hover {
-            cursor: pointer;
-            color: black;
-        }
-    }
+		transition: color 0.25s;
+
+		&:hover {
+			cursor: pointer;
+			color: black;
+		}
+	}
 }
 
 .mob-nav {
-    position: fixed;
-    bottom: 0;
-    /* top: calc(100% - 60px); */
-    width: 100%;
-    padding: 0.75em 0;
+	position: fixed;
+	bottom: 0;
+	/* top: calc(100% - 60px); */
+	width: 100%;
+	padding: 0.75em 0;
 
-    display: none;
-    justify-content: space-around;
+	display: none;
+	justify-content: space-around;
 
-    background-color: white;
-    z-index: 10;
+	background-color: white;
+	z-index: 10;
 
-    & > .reg-log-btn-ctn {
-        width: 100%;
-    }
+	& > .reg-log-btn-ctn {
+		width: 100%;
+	}
 
-    @media only screen and (max-width: 768px) {
-        display: flex;
-    }
+	@media only screen and (max-width: 768px) {
+		display: flex;
+	}
 }
 
 .notifs-mob-ctn {
-    @media only screen and (max-width: 768px) {
-        position: absolute;
-        /* top: initial; */
-        bottom: 60px;
-        left: 0;
+	@media only screen and (max-width: 768px) {
+		position: absolute;
+		/* top: initial; */
+		bottom: 60px;
+		left: 0;
 
-        width: 100%;
-        height: 300px;
+		width: 100%;
+		height: 300px;
 
-        display: flex;
-        flex-direction: column;
+		display: flex;
+		flex-direction: column;
 
-        background-color: white;
-        border-radius: 0.15em;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        overflow-y: auto;
+		background-color: white;
+		border-radius: 0.15em;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+		overflow-y: auto;
 
-        transform: scale(1, 0);
-        transform-origin: 50% 100%;
-        transition: transform 0.25s, opacity 0.25s;
-    }
+		transform: scale(1, 0);
+		transform-origin: 50% 100%;
+		transition: transform 0.25s, opacity 0.25s;
+	}
 }

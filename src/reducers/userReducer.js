@@ -123,6 +123,7 @@ function dispatchLogin(userDetails) {
 function dispatchLogOut() {
 	return (dispatch) => {
 		window.localStorage.removeItem("socioUser");
+		// window.localStorage.removeItem("socioTheme");
 		dispatch({
 			type: "LOG_OUT",
 			data: null,

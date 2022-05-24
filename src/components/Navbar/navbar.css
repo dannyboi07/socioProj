@@ -1,4 +1,5 @@
-.nav-ctn-dsktp, .nav-ctn-mob {
+.nav-ctn-dsktp,
+.nav-ctn-mob {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -119,6 +120,12 @@
   display: none;
 }
 
+@media only screen and (max-width: 768px) {
+  .search-ctn {
+    min-width: 200px;
+  }
+}
+
 nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -155,6 +162,18 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.reg-log-btn-ctn--not-logged > a {
+  width: 2em;
+  height: 2em;
+  margin-left: 5px;
+}
+
+.reg-log-btn-ctn--not-logged > a > img {
+  display: block;
+  width: 2em;
+  height: 2em;
 }
 
 .reg-log-btn-ctn:not(.reg-log-btn-ctn--not-logged) > * {
@@ -291,30 +310,6 @@ nav {
 .reg-log-btn-ctn__setting-ctn--logout-link > img {
   width: 2em;
   height: 2em;
-}
-
-.reg-log-btn-ctn__reg-btn {
-  width: 2em;
-  height: 2em;
-  margin-left: 5px;
-}
-
-.reg-log-btn-ctn__reg-btn > img {
-  display: block;
-  width: 2em;
-  height: 2em;
-}
-
-.reg-log-btn-ctn__log-btn > div {
-  width: 2em;
-  height: 2em;
-  background: url("/public/login.svg") no-repeat;
-  background-size: contain;
-}
-
-.reg-log-btn-ctn__log-btn:hover > div {
-  background: url("/public/login.gif") no-repeat;
-  background-size: contain;
 }
 
 @media only screen and (max-width: 768px) {

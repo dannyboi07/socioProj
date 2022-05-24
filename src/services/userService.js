@@ -1,6 +1,6 @@
 import axios from "axios";
-//const baseUrl = "http://localhost:3500/api/user";
-const baseUrl = "https://secure-meadow-40264.herokuapp.com/api/user";
+import url from "./baseUrl";
+const baseUrl = `${url}/api/user`;
 
 async function getUser(userName, token = null) {
 	if (token) {

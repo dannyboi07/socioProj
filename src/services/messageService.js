@@ -1,6 +1,6 @@
 import axios from "axios";
-//const baseUrl = "http://localhost:3500/api/comms";
-const baseUrl = "https://secure-meadow-40264.herokuapp.com/api/comms";
+import url from "./baseUrl";
+const baseUrl = `${url}/api/comms`;
 
 async function getContacted(token) {
 	const response = await axios.get(`${baseUrl}/contacted`, {

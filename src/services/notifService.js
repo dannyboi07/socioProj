@@ -1,6 +1,6 @@
 import axios from "axios";
-//const baseUrl = "http://localhost:3500/api/user/notifs";
-const baseUrl = "https://secure-meadow-40264.herokuapp.com/user/notifs";
+import url from "./baseUrl";
+const baseUrl = `${url}/api/user/notifs`;
 
 async function getNotifs(token) {
 	const response = await axios.get(baseUrl, {
