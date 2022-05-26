@@ -6,7 +6,7 @@ const {
 } = require("@aws-sdk/client-s3");
 const fs = require("fs");
 
-const region = process.env.AWS_S3_REGION;
+const region = "us-east-1";// process.env.AWS_S3_REGION;
 const credentials = {
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
