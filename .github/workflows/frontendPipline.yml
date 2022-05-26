@@ -32,9 +32,7 @@ jobs:
           git fetch
           echo "fetched ${GITHUB_REF##*/}"
 
-          git checkout frontend -- $files
-          echo "checked source branch files"
-          git add -A
+          git add build
           git commit -a -m "Pushing build to backend branch '#skip'"
           git checkout $TARGET_BRANCH
           echo "checked target branch"
