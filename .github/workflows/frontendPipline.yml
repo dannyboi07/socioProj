@@ -19,3 +19,24 @@ jobs:
         run: npm run build
       - name: Linting
         run: npm run eslint
+      - name: Pushing build to Frontend branch
+        uses: cpina/github-action-push-to-another-repository@main
+        with:
+          personal_token: ${{ secrets.API_TOKEN_GITHUB }}
+          src_path: /build
+          dst_path: /build/
+          dst_owner: dannyboi07
+          dst_repo_name: socioProj/tree/frontend
+  push_build:
+    needs: [build_job]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pushing build to Backend branch
+        uses: cpina/github-action-push-to-another-repository@main
+        with:
+          personal_token: ${{ secrets.API_TOKEN_GITHUB }}
+          source-directory: /build
+          dst_path: /build/
+          dst_owner: dannyboi07
+          dst_repo_name: socioProj/tree/backend
+          
