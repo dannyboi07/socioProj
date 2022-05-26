@@ -19,17 +19,27 @@ jobs:
         run: npm run build
       - name: Linting
         run: npm run eslint
-      - name: Pushing build to Backend branch
+      - name: Pushing build to Frontend branch
+        uses: cpina/github-action-push-to-another-repository@main
         env:
-          SRC_FOLDER_PATH: 'build'
-          TARGET_BRANCH: 'backend'
-        run: |
-          files=$(find $SRC_FOLDER_PATH -type f)
-          echo "$files"
-          git config --global user.name 'dannyboi07'
-          git config --global user.email 'danielchettiar07@gmail.com'
-          ls
-          git branch
-          git add -A
-          git commit -m "Pushing build to frontend branch"
-          git push
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'build'
+          destination-github-username: 'dannyboi07'
+          destination-repository-name: 'socioProj'
+          user-email: danielchettiar07@gmail.com
+          target-branch: frontend
+  push_build:
+    needs: [build_job]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pushing build to Backend branch
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'build'
+          destination-github-username: 'dannyboi07'
+          destination-repository-name: 'socioProj'
+          user-email: danielchettiar07
+          target-branch: backend
