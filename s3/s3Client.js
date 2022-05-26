@@ -1,18 +1,16 @@
 const {
 	S3Client,
-	ListBucketsCommand,
 	GetObjectCommand,
 	PutObjectCommand,
 } = require("@aws-sdk/client-s3");
 const fs = require("fs");
 
-const region = "us-east-1";// process.env.AWS_S3_REGION;
+const region = process.env.AWS_S3_REGION;
 const credentials = {
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 };
 const Bucket = process.env.AWS_S3_BUCKET_NAME;
-
 // Reminder: Currently using keys of IAM user that was created specifically
 // just for accessing the bucket
 
@@ -43,7 +41,6 @@ function uploadFile(filePath) {
 }
 
 function getS3Obj(Key) {
-	console.log(Key);
 	const getParams = {
 		Bucket,
 		Key,
@@ -54,7 +51,6 @@ function getS3Obj(Key) {
 
 module.exports = {
 	s3Client,
-	ListBucketsCommand,
 	GetObjectCommand,
 	uploadFile,
 	uploadProfImg,

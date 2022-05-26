@@ -38,7 +38,7 @@ app.use("/api/login", loginRouter);
 app.use("/api/register", registerRouter);
 
 app.use("/api/subscribe", middleware.extractToken, subscriptionRouter);
-app.use("/api/health", (req, res) => {
+app.get("/api/health", (req, res) => {
 	res.send("ok");
 });
 
