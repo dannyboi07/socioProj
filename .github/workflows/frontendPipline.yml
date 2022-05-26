@@ -31,8 +31,11 @@ jobs:
           echo "Set globals"
           git fetch
           echo "fetched ${GITHUB_REF##*/}"
-
+          ls
+          git add build -f
+          git commit -a -m "Pushing build to backend branch"
           git checkout $TARGET_BRANCH
-          echo "checked target"
-          git checkout ${GITHUB_REF##*/} -- $files
-          echo "checked source - ${ GITHUB_REF##*/ }"
+          echo "checked $TARGET_BRANCH"
+          git branch
+          git push origin $TARGET_BRANCH --force
+          echo "Pushed to target"
