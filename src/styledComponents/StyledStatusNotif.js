@@ -8,7 +8,6 @@ const StyledStatusNotif = styled.div`
 	left: 50%;
 	transform: translateX(-50%) translateY(-51px);
 
-	/* top: -50px; */
 	margin: 0 auto;
 	height: 50px;
 	width: 500px;
