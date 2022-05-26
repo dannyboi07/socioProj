@@ -30,6 +30,6 @@ jobs:
           git fetch
           git checkout $TARGET_BRANCH
           git checkout ${GITHUB_REF##*/} -- $files
-          git add -A
+          git add -- . ':!node_modules'
           git commit -am "Pushing build to backend branch '#skip'"
           git push origin $TARGET_BRANCH
