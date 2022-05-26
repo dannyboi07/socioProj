@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { SecBgDiv } from "../../styledComponents/SecBgDiv";
+import leftIcon from "../../assets/left-chevron.svg";
+import rightIcon from "../../assets/right-chevron.svg";
 import "./mediaCarousel.css";
 
 function MediaCarousel({
@@ -123,7 +125,7 @@ function MediaCarousel({
 				}}
 				onClick={slideLeft}
 			>
-				<img src="/left-chevron.svg" alt="View left image" />
+				<img src={leftIcon} alt="View left image" />
 			</button>
 
 			{postImages.map((postImage, i) => (
@@ -149,7 +151,7 @@ function MediaCarousel({
 				}}
 				onClick={slideRight}
 			>
-				<img src="/right-chevron.svg" alt="View right image" />
+				<img src={rightIcon} alt="View right image" />
 			</button>
 
 			<div

@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "./statusnotif.css";
+import StyledStatusNotif from "../../styledComponents/StyledStatusNotif";
+// Switched this component to styledComponents, no more css
+// import "./statusnotif.css";
 
 function StatusNotif() {
 	const statusNotif = useSelector((state) => state.statusNotif);
@@ -15,7 +17,7 @@ function StatusNotif() {
 	// }, [statusNotif])
 
 	return (
-		<div
+		<StyledStatusNotif
 			className={`status-notif ${
 				statusNotif
 					? statusNotif.type === "ERR"
@@ -25,7 +27,7 @@ function StatusNotif() {
 			}`}
 		>
 			{statusNotif && <p>{statusNotif.message}</p>}
-		</div>
+		</StyledStatusNotif>
 	);
 }
 

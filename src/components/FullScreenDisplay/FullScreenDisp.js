@@ -4,8 +4,9 @@ import { useHistory, useParams, useLocation } from "react-router-dom";
 import { setFSData, removeFSData } from "../../reducers/fullScreenReducer";
 import { getPost } from "../../services/contentService";
 import { setStatusNotif } from "../../reducers/statusNotifReducer";
-import "./fullscrndisp.css";
 import { setFailure } from "../../reducers/failureReducer";
+import closeImg from "../../assets/close-icon.svg";
+import "./fullscrndisp.css";
 
 function FullScreenDisp({ children, displayPost, goback }) {
 	const storeHasAllFsData = useSelector(state => state.fullscreenData ? true : false);
@@ -57,7 +58,7 @@ function FullScreenDisp({ children, displayPost, goback }) {
 					children
 				}
 
-				<img className="close-post-flscrn" src="/close-icon.svg" alt="Close" onClick={ handleCloseFullscreen } />
+				<img className="close-post-flscrn" src={closeImg} alt="Close" onClick={ handleCloseFullscreen } />
 
 			</div>
 		</div>

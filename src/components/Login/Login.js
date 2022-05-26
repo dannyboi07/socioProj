@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { dispatchLogin } from "../../reducers/userReducer";
+import loginBgImg from "../../assets/login-bg-img.jpg";
 import "./login.css";
 
 function Login() {
@@ -23,7 +24,12 @@ function Login() {
 	}
 
 	return (
-		<div className="login-ctn">
+		<div
+			className="login-ctn"
+			style={{
+				backgroundImage: `url(${loginBgImg})`,
+			}}
+		>
 			<div className="login-font">
 				<h1>Log in</h1>
 				<p>& keep up with what&apos;s happening</p>

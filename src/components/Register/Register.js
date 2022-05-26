@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setStatusNotif } from "../../reducers/statusNotifReducer";
 import { dispatchRegister } from "../../reducers/userReducer";
+import registerBgImg from "../../assets/register-bg-img.jpg";
 import "./register.css";
 
 function Register() {
@@ -81,7 +82,12 @@ function Register() {
 	}
 
 	return (
-		<div className="register-ctn">
+		<div
+			className="register-ctn"
+			style={{
+				backgroundImage: `url(${registerBgImg})`,
+			}}
+		>
 			<div className="register-font">
 				<h1>Socio</h1>
 

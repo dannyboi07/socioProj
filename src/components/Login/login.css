@@ -4,7 +4,7 @@
     /* flex-direction: column; */
     justify-content: space-around;
     align-items: center;
-    background: rgba(0, 0, 0, 0.3) url("/public/login-bg-img.jpg") no-repeat;
+    background: rgba(0, 0, 0, 0.3) no-repeat;
     background-size: cover;
     background-blend-mode: darken;
 }

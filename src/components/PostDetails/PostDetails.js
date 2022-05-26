@@ -1,18 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { likePostRdx, unLikePostRdx } from "../../reducers/postblogReducer";
-import { getPostComms, getPostLikers, postComm } from "../../services/contentService";
+import {
+	getPostComms,
+	getPostLikers,
+	postComm,
+} from "../../services/contentService";
 import ProfileList from "../ProfileList/ProfileList";
 import CommentsList from "../CommentsList/CommentsList";
 import { Text } from "../../styledComponents/Text";
-import "./postdetails.css";
 import { setStatusNotif } from "../../reducers/statusNotifReducer";
 import { TextActionCol } from "../../styledComponents/TextActionCol";
 import { TextArea } from "../../styledComponents/CommInput";
+import likedGif from "../../assets/liked-svg.gif";
+import heartSvg from "../../assets/heart.svg";
+import arrowDown from "../../assets/icon-arrow-down.svg";
+import "./postdetails.css";
 
 function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
 	const dispatch = useDispatch();
-	const userData = useSelector(state => state.user);
+	const userData = useSelector((state) => state.user);
 
 	const [likesCount, setLikesCount] = useState(parseInt(likes));
 	const [likestate, setLikestate] = useState({ display: "none" });
@@ -38,7 +45,6 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
 	}
 
 	useEffect(() => {
-
 		comInputRef.current.style = "height: 2.35em; overflow-y: hidden;";
 		comInputRef.current.addEventListener("input", OnInput);
 		comInputRef.current.addEventListener("keyup", handleEntClick);
@@ -91,14 +97,14 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
 	function showLikesAsBlock() {
 		arwBtn.current.classList.toggle("toggle-btn--active");
 
-		likestate.display === "none"
-			? showLikes()
-			: hideLikes();
+		likestate.display === "none" ? showLikes() : hideLikes();
 	}
 
 	function handlePostLikeClick() {
 		if (userData.uId === postUid) {
-			dispatch(setStatusNotif("SET_ERR_NOTIF", "Cannot like your own post", 2));
+			dispatch(
+				setStatusNotif("SET_ERR_NOTIF", "Cannot like your own post", 2),
+			);
 			return;
 		}
 		if (ulikedOrNot) {
@@ -148,43 +154,49 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
 	function showCmtsAsBlock() {
 		cmtArwBtn.current.classList.toggle("toggle-btn--active");
 
-		comsState.display === "none"
-			? showComms()
-			: hideComms();
+		comsState.display === "none" ? showComms() : hideComms();
 	}
 
 	async function postComment() {
 		try {
-			const newComResp = await postComm(postId, comInputState, userData.token);
+			const newComResp = await postComm(
+				postId,
+				comInputState,
+				userData.token,
+			);
 			setComInputState(null);
 			comInputRef.current.value = null;
 			setComCount(comCount + 1);
 
 			if (comsResults) {
-				setComsResults([ ...comsResults, newComResp]);
-			}
-			else getComms();
-
-		} catch(err) {
+				setComsResults([...comsResults, newComResp]);
+			} else getComms();
+		} catch (err) {
 			console.error("Error posting comment");
 		}
 	}
 
 	return (
-		<div className={`post-details-ctn ${inFlscrn ? "pst-det-ctn--mod" : "" }`}>
+		<div
+			className={`post-details-ctn ${inFlscrn ? "pst-det-ctn--mod" : ""}`}
+		>
 			<div className="details-ctn">
 				<div className="like-btn-ctn">
-					<button className="like-btn"
+					<button
+						className="like-btn"
 						onClick={handlePostLikeClick}
 						onTouchStart={showLikes}
 						onTouchEnd={hideLikes}
 						onMouseOver={showLikes}
-						onMouseOut={hideLikes}>
-						<Text>
-							{ likesCount }
-						</Text>
+						onMouseOut={hideLikes}
+					>
+						<Text>{likesCount}</Text>
 
-						<img className={ ulikedOrNot ? "" : "like-icon" } src={ ulikedOrNot ? "/liked-svg.gif" : "/heart.svg" } alt="like-icon"/>
+						<img
+							className={ulikedOrNot ? "" : "like-icon"}
+							src={ulikedOrNot ? likedGif : heartSvg}
+							alt="like-icon"
+						/>
 					</button>
 
 					<ProfileList
@@ -192,66 +204,64 @@ function PostDetails({ postUid, postId, likes, liked, noComments, inFlscrn }) {
 						postId={postId}
 						likestate={likestate}
 						likeResults={likeResults}
-						profListRef={profListRef}/>
+						profListRef={profListRef}
+					/>
 
 					<button
 						id={`tglBtn${postId}`}
 						className="toggle-btn"
 						onClick={showLikesAsBlock}
-						ref={arwBtn}>
-						<img src="/icon-arrow-down.svg" alt="toggle-likes"/>
+						ref={arwBtn}
+					>
+						<img src={arrowDown} alt="toggle-likes" />
 					</button>
-
 				</div>
 
 				<div className="comments-btn-ctn">
-					<button className="comments-btn"
+					<button
+						className="comments-btn"
 						onTouchStart={showComms}
 						onTouchEnd={hideComms}
 						onMouseOver={showComms}
-						onMouseOut={hideComms}>
-
-						<Text>
-              Comments: { comCount }
-						</Text>
-
+						onMouseOut={hideComms}
+					>
+						<Text>Comments: {comCount}</Text>
 					</button>
 
 					<button
 						className="toggle-btn"
-						onClick={ showCmtsAsBlock }
-						ref={ cmtArwBtn }>
-						<img src="/icon-arrow-down.svg" alt="toggle-cmts"/>
+						onClick={showCmtsAsBlock}
+						ref={cmtArwBtn}
+					>
+						<img src={arrowDown} alt="toggle-cmts" />
 					</button>
-
 				</div>
 
 				<CommentsList
-					postId={ postId }
-					comsState={ comsState }
-					commentsData={ comsResults }
-					commListRef={ commListRef }
-					inFlscrn={ inFlscrn }/>
+					postId={postId}
+					comsState={comsState}
+					commentsData={comsResults}
+					commListRef={commListRef}
+					inFlscrn={inFlscrn}
+				/>
 			</div>
 
 			<div className="input-cmt-ctn">
 				<TextArea
-					value={ comInputState }
-					onChange={e => setComInputState(e.target.value)}
-					placeholder='Comment...'
-					ref={comInputRef}/>
+					value={comInputState}
+					onChange={(e) => setComInputState(e.target.value)}
+					placeholder="Comment..."
+					ref={comInputRef}
+				/>
 
 				<button
-					className={ comInputState === "" ? "post-cmt-btn-dis" : "" }
-					onClick={ postComment } disabled={ comInputState === "" ? true : false }
-					ref={ comSubRef }>
-
-					<TextActionCol>
-            Post
-					</TextActionCol>
-
+					className={comInputState === "" ? "post-cmt-btn-dis" : ""}
+					onClick={postComment}
+					disabled={comInputState === "" ? true : false}
+					ref={comSubRef}
+				>
+					<TextActionCol>Post</TextActionCol>
 				</button>
-
 			</div>
 		</div>
 	);

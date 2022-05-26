@@ -84,7 +84,7 @@ function App() {
 		//   }
 		// }
 		// else dispatch(getAll());
-	}, [dispatch, user]);
+	}, [user]);
 
 	const fullscreenData = useSelector(state => state.fullscreenData);
 

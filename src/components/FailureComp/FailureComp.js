@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setFailure } from "../../reducers/failureReducer";
 import { useHistory } from "react-router-dom";
-import "./failurecomp.css";
 import { SecBgDiv } from "../../styledComponents/SecBgDiv";
 import { Button } from "../../styledComponents/Button";
+import notFoundImg from "../../assets/error-404.svg";
+import "./failurecomp.css";
 
 function FailureComp({ notFound }) {
 	const failureState = useSelector(state => state.failure);
@@ -15,7 +16,7 @@ function FailureComp({ notFound }) {
 		return (
 			<SecBgDiv className="fail-fs-ctn">
 				<div className="fail-ctn">
-					<img src="/error-404.svg" alt="404-icon" />
+					<img src={notFoundImg} alt="404-icon" />
 					<p>
                         Broken link
 					</p>
