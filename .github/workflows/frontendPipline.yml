@@ -33,7 +33,7 @@ jobs:
     needs: [build_job]
     runs-on: ubuntu-latest
     steps:
-      - name: Pushing build to Backend branch
+      - name: Pushing build to Backend Branch
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
