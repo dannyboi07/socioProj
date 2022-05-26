@@ -36,5 +36,5 @@ jobs:
           git checkout origin/frontend -- $files
           echo "checked source branch"
           git add -A
-          git commit -am "Pushing build to backend branch '#skip'"
+          git commit -a -m "Pushing build to backend branch '#skip'"
           git push origin $TARGET_BRANCH
