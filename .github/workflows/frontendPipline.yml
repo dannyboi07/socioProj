@@ -25,7 +25,7 @@ jobs:
           git config --global user.email 'danielchettiar07@gmail.com'
           ls
           git branch
-          git add build
+          git add build -f
           git commit -am "Pushing build to frontend branch"
           git push -u origin frontend
   push_build:
