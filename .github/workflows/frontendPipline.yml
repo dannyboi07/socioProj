@@ -32,10 +32,6 @@ jobs:
           git fetch
           echo "fetched ${GITHUB_REF##*/}"
           ls
-          git add build -f
-          git commit -a -m "Pushing build to backend branch"
+
           git checkout $TARGET_BRANCH
-          echo "checked $TARGET_BRANCH"
-          git branch
-          git push origin $TARGET_BRANCH --force
-          echo "Pushed to target"
+          git restore --source origin/frontend /build
