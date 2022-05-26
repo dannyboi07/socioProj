@@ -30,7 +30,7 @@ jobs:
           git config --global user.email 'action@github.com'
           git fetch
           git checkout $TARGET_BRANCH
-          git checkout ${GITHUB_REF##*/} -- $files
+          git checkout origin/frontend -- $files
           git add -A
           git commit -am "Pushing build to backend branch '#skip'"
           git push origin $TARGET_BRANCH
