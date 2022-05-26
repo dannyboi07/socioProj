@@ -34,4 +34,4 @@ jobs:
           ls
 
           git checkout $TARGET_BRANCH
-          git restore --source origin/frontend /build
+          git restore --source origin/frontend build
