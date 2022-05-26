@@ -31,10 +31,12 @@ jobs:
           echo "Set globals"
           git fetch
           echo "fetched"
-          git checkout $TARGET_BRANCH
-          echo "checked target branch"
+
           git checkout origin/frontend -- $files
-          echo "checked source branch"
+          echo "checked source branch files"
           git add -A
           git commit -a -m "Pushing build to backend branch '#skip'"
+          git checkout $TARGET_BRANCH
+          echo "checked target branch"
           git push origin $TARGET_BRANCH
+          echo "pushed to target"
