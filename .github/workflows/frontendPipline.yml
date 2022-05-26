@@ -28,7 +28,8 @@ jobs:
           echo "$files"
           git config --global user.name 'dannyboi07'
           git config --global user.email 'danielchettiar07@gmail.com'
+          ls
           git branch
           git add -A
           git commit -m "Pushing build to frontend branch"
-          git push -u origin frontend
+          git push
