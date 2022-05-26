@@ -26,13 +26,13 @@ jobs:
         run: |
           files=$(find $SRC_FOLDER_PATH -type f)
           echo "$files"
-          git config --global user.name 'Github Action'
-          git config --global user.email 'action@github.com'
+          git config --global user.name 'dannyboi07'
+          git config --global user.email 'danielchettiar07@gmail.com'
           echo "Set globals"
           git fetch
           echo "fetched ${GITHUB_REF##*/}"
 
-          git checkout origin/frontend -- $files
+          git checkout frontend -- $files
           echo "checked source branch files"
           git add -A
           git commit -a -m "Pushing build to backend branch '#skip'"
