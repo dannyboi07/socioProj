@@ -33,5 +33,11 @@ jobs:
           echo "fetched ${GITHUB_REF##*/}"
           ls
 
+          git add build -f
+          git commit -a -m "Pushing build to backend branch"
           git checkout $TARGET_BRANCH
-          git restore --source origin/frontend $files
+          echo "checked $TARGET_BRANCH"
+          git pull
+          git branch
+          git push origin $TARGET_BRANCH --force
+          echo "Pushed to target"
