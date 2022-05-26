@@ -28,9 +28,13 @@ jobs:
           echo "$files"
           git config --global user.name 'Github Action'
           git config --global user.email 'action@github.com'
+          echo "Set globals"
           git fetch
+          echo "fetched"
           git checkout $TARGET_BRANCH
+          echo "checked target branch"
           git checkout origin/frontend -- $files
+          echo "checked source branch"
           git add -A
           git commit -am "Pushing build to backend branch '#skip'"
           git push origin $TARGET_BRANCH
