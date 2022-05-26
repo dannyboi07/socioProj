@@ -59,7 +59,6 @@ function App() {
 						navigator.serviceWorker.controller.postMessage({ token: user.token, primaryKey: e.data.primaryKey });
 					}
 					else {
-						//console.log("else adding notif");
 						dispatch(addNotif( [{
 							primaryKey: e.data.primaryKey,
 							title: e.data.title,

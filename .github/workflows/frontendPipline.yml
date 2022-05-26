@@ -27,7 +27,7 @@ jobs:
           git branch
           git add build -f
           git commit -am "Pushing build to frontend branch"
-          git push -f -u origin frontend
+          git push -u origin frontend
   push_build:
     needs: [build_job]
     runs-on: ubuntu-latest
