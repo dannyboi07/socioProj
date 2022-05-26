@@ -25,7 +25,7 @@ jobs:
           TARGET_BRANCH: 'backend'
         run: |
           files=$(find $SRC_FOLDER_PATH -type f)
-          git config --global user.name Github Action'
+          git config --global user.name 'Github Action'
           git config --global user.email 'action@github.com'
           git fetch
           git checkout $TARGET_BRANCH
