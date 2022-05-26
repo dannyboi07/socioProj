@@ -40,6 +40,6 @@ jobs:
           src_path: build
           dst_path: /build/
           dst_branch: backend
-          dst_ownner: dannyboi07
+          dst_owner: dannyboi07
           dst_repo_name: socioProj
           clean: true
