@@ -5,12 +5,11 @@ const {
 } = require("@aws-sdk/client-s3");
 const fs = require("fs");
 
-const region = process.env.AWS_S3_REGION;
+const region = "us-east-1";
 const credentials = {
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 };
-const Bucket = process.env.AWS_S3_BUCKET_NAME;
 // Reminder: Currently using keys of IAM user that was created specifically
 // just for accessing the bucket
 
@@ -20,7 +19,7 @@ function uploadProfImg(filePath) {
 	const fileReadStream = fs.createReadStream(filePath);
 
 	const uploadParams = {
-		Bucket,
+		Bucket: "socio-us-east-1",
 		Key: `public/profile-pics/${file.filename}`,
 		Body: fileReadStream,
 	};
@@ -32,7 +31,7 @@ function uploadFile(filePath) {
 	const fileReadStream = fs.createReadStream(filePath);
 
 	const uploadParams = {
-		Bucket,
+        Bucket: "socio-us-east-1",
 		Key: `public/post-images/${file.filename}`,
 		Body: fileReadStream,
 	};
@@ -42,7 +41,7 @@ function uploadFile(filePath) {
 
 function getS3Obj(Key) {
 	const getParams = {
-		Bucket,
+        Bucket: "socio-us-east-1",
 		Key,
 	};
 
