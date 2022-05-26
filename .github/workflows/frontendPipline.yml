@@ -23,10 +23,13 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         with:
           personal_token: ${{ secrets.API_TOKEN_GITHUB }}
+          src_branch: frontend
           src_path: /build
           dst_path: /build/
+          dst_branch: frontend
           dst_owner: dannyboi07
-          dst_repo_name: socioProj/tree/frontend
+          dst_repo_name: socioProj
+          clean: true
   push_build:
     needs: [build_job]
     runs-on: ubuntu-latest
@@ -35,8 +38,10 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         with:
           personal_token: ${{ secrets.API_TOKEN_GITHUB }}
-          source-directory: /build
+          src_branch: frontend
+          src_path: /build
           dst_path: /build/
-          dst_owner: dannyboi07
-          dst_repo_name: socioProj/tree/backend
-          
+          dst_branch: backend
+          dst_ownner: dannyboi07
+          dst_repo_name: socioProj
+          clean: true
