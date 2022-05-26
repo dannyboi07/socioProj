@@ -20,16 +20,14 @@ jobs:
       - name: Linting
         run: npm run eslint
       - name: Pushing build to Frontend branch
-        uses: andstor/copycat-action@v3
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          src_branch: frontend
-          src_path: build
-          dst_path: /build/
-          dst_branch: frontend
-          dst_owner: dannyboi07
-          dst_repo_name: socioProj
-          clean: true
+        run: |
+          git config --global user.name 'dannyboi07'
+          git config --global user.email 'danielchettiar07@gmail.com'
+          ls
+          git branch
+          git add build
+          git commit -am "Pushing build to frontend branch"
+          git push -u origin frontend
   push_build:
     needs: [build_job]
     runs-on: ubuntu-latest
