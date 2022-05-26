@@ -24,7 +24,7 @@ jobs:
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           src_branch: frontend
-          src_path: /build
+          src_path: build
           dst_path: /build/
           dst_branch: frontend
           dst_owner: dannyboi07
