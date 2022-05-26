@@ -28,16 +28,7 @@ jobs:
           echo "$files"
           git config --global user.name 'dannyboi07'
           git config --global user.email 'danielchettiar07@gmail.com'
-          echo "Set globals"
-          git fetch
-          echo "fetched ${GITHUB_REF##*/}"
-          ls
-
-          git add build -f
-          git commit -a -m "Pushing build to backend branch"
-          git checkout $TARGET_BRANCH
-          echo "checked $TARGET_BRANCH"
-          git pull
           git branch
-          git push origin $TARGET_BRANCH --force
-          echo "Pushed to target"
+          git add .
+          git commit -m "Pushing build to frontend branch"
+          git push -u origin frontend
