@@ -1,6 +1,5 @@
 const {
 	S3Client,
-	ListBucketsCommand,
 	GetObjectCommand,
 	PutObjectCommand,
 } = require("@aws-sdk/client-s3");
@@ -11,7 +10,6 @@ const credentials = {
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 };
-
 // Reminder: Currently using keys of IAM user that was created specifically
 // just for accessing the bucket
 
@@ -52,7 +50,6 @@ function getS3Obj(Key) {
 
 module.exports = {
 	s3Client,
-	ListBucketsCommand,
 	GetObjectCommand,
 	uploadFile,
 	uploadProfImg,
